@@ -15,7 +15,7 @@ class SliderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color.fromARGB(255, 204, 204, 204),
+      backgroundColor:  const Color.fromARGB(255, 204, 204, 204),
       body: StreamBuilder<Profile>(
         stream: fireBase.myProfileStream(),
         builder: (context, snap) {
@@ -27,10 +27,10 @@ class SliderView extends StatelessWidget {
                   height: 30,
                 ),
                 const CircleAvatar(
-                  radius: 65,
+                  radius: 50,
                   backgroundColor: Colors.grey,
                   child: CircleAvatar(
-                    radius: 60,
+                    radius: 45,
 
                   ),
                 ),
@@ -39,10 +39,20 @@ class SliderView extends StatelessWidget {
                 ),
                 Text(
                   '${snap.data!.username}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                      fontFamily: 'BalsamiqSans'),
+                ),const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'nwior8h2823fi9',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
                       fontFamily: 'BalsamiqSans'),
                 ),
                 const SizedBox(
@@ -78,7 +88,7 @@ class SliderView extends StatelessWidget {
                 )
               ],
             ),
-          ):Center(child: CircularProgressIndicator(),);
+          ):const Center(child: CircularProgressIndicator(),);
         }
       ),
     );

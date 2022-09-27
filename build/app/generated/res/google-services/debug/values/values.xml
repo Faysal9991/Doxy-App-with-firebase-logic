@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">897401434851-aurhivdd2brtp5hl8cbkhinb4cgmefb2.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">897401434851</string>
+    <string name="google_api_key" translatable="false">AIzaSyDIEx3gfKBXX4CMpx3wkD6T2_njx3HXoyM</string>
+    <string name="google_app_id" translatable="false">1:897401434851:android:6c5f95d2563cb62c57cbd6</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDIEx3gfKBXX4CMpx3wkD6T2_njx3HXoyM</string>
+    <string name="google_storage_bucket" translatable="false">jadeais.appspot.com</string>
+    <string name="project_id" translatable="false">jadeais</string>
+</resources>

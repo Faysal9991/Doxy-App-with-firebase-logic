@@ -41,11 +41,32 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(height: height*0.18,),
                  const Text("স্বাগতম Jade Ai!",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                 SizedBox(height: height*0.06,),
-                 const Text("আপনার ফোন নম্বার",style: TextStyle(color: Color(0xffA5A3A3)),),
+                 const Text("Input your gmail adress",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
-                SizedBox(
-                    height: height*0.07,
-                    child: PhoneNumberPicker(phone: phone,)),
+                 Container(
+                  height: height*0.05,
+
+                  decoration: BoxDecoration(
+                      color: const Color(0xffF6F6F6),
+                      borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.visiblePassword,
+                    onChanged: (s){
+                      phone.value=s;
+                    },
+                    //controller: password,
+                    decoration:  InputDecoration(
+                        //labelText: "পাসওয়ার্ড লিখুন",
+                        hintText: "enter gmail",
+
+                        contentPadding: EdgeInsets.only(left: width*0.03,bottom: height*0.01),
+                        border: InputBorder.none,
+                    ),
+                  ),
+                ),
+
+              
                 /*Container(
                   height: height*0.07,
 
@@ -81,6 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     //controller: password,
                     decoration: InputDecoration(
+                      hintText: "Password",
                         //labelText: "পাসওয়ার্ড লিখুন",
                         contentPadding: EdgeInsets.all(20.0),
                         border: InputBorder.none,
@@ -97,7 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     width: width,
                     child: ElevatedButton(onPressed: ()async{
                       //print(phone.value);
-                      await fireBase.signUp("${phone.value}@gamil.com", password.value);
+                      await fireBase.signUp(phone.value, password.value);
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>NavegationBar()), (route) => false);
                     }, child: const Text("প্রবেশ করুন"))),
                 SizedBox(height: height*0.02,),

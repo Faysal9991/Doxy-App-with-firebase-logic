@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
 
 
@@ -15,30 +16,30 @@ void main() async{
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+  // ignore: must_be_immutable
+  class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
+    primarySwatch: Colors.deepOrange,
+    iconTheme: IconThemeData(color: Colors.black),),
       //home: const NavegationBar(),
       home: StreamBuilder(
           stream: auth.authStateChanges(),
           builder: (context, snapshot) {
             if(snapshot.connectionState==ConnectionState.active){
               if(snapshot.hasData){
-                return NavegationBar();
+                return const NavegationBar();
               }
             }
             if(snapshot.connectionState==ConnectionState.waiting){
-              return Scaffold(body: Center(child: CircularProgressIndicator(),),);
+              return const Scaffold(body: Center(child: CircularProgressIndicator(),),);
             }
             return LoginPage();
           }
