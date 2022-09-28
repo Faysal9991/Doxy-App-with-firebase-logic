@@ -46,7 +46,7 @@ dependencies:
   cloud_firestore: ^3.4.9
   awesome_snackbar_content: ^0.0.8
   modal_bottom_sheet: ^2.1.2
-  get: ^4.6.5
+  google_mobile_ads: ^2.0.1
 
 
 dev_dependencies:
