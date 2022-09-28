@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/screens/buy_robot_screen.dart';
 import 'package:jadeais/widgtes/robot_order.dart';
 
 import '../../mls/botmodel.dart';
@@ -82,6 +84,7 @@ class RobotDetails extends StatelessWidget {
                                onRobot: myProfile.mybots.contains(bot.id)?null:()async{
 
                              if(myProfile.totalMoney>=bot.price!){
+
                                await fireBase.buyRobot(myProfile, bot);
                              }else{
                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Not enough money, recharge")));

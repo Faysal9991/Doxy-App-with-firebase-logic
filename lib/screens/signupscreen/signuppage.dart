@@ -16,6 +16,8 @@ class _SignUpPageState extends State<SignUpPage> {
   ValueNotifier<String> phone = ValueNotifier("");
 
   ValueNotifier<String> password = ValueNotifier("");
+  TextEditingController p = TextEditingController();
+  TextEditingController pw = TextEditingController();
   FireBase fireBase = FireBase();
   @override
   Widget build(BuildContext context) {
@@ -52,10 +54,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   child: TextField(
                     keyboardType: TextInputType.visiblePassword,
-                    onChanged: (s){
-                      phone.value=s;
-                    },
-                    //controller: password,
+
+                    controller: p,
                     decoration:  InputDecoration(
                         //labelText: "পাসওয়ার্ড লিখুন",
                         hintText: "enter gmail",
@@ -97,10 +97,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       borderRadius: BorderRadius.circular(5)
                   ),
                   child: TextField(
-                    onChanged: (s){
-                      password.value=s;
-                    },
-                    //controller: password,
+
+                    controller: pw,
                     decoration: InputDecoration(
                       hintText: "Password",
                         //labelText: "পাসওয়ার্ড লিখুন",
@@ -119,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     width: width,
                     child: ElevatedButton(onPressed: ()async{
                       //print(phone.value);
-                      await fireBase.signUp(phone.value, password.value);
+                      await fireBase.signUp(p.text.trim(), pw.text.trim());
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>NavegationBar()), (route) => false);
                     }, child: const Text("প্রবেশ করুন"))),
                 SizedBox(height: height*0.02,),

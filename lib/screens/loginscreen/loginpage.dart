@@ -15,6 +15,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   ValueNotifier<String> phone = ValueNotifier("");
   ValueNotifier<String> password = ValueNotifier("");
+  TextEditingController p = TextEditingController();
+  TextEditingController pw = TextEditingController();
   FireBase fireBase = FireBase();
   @override
   Widget build(BuildContext context) {
@@ -73,10 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: TextField(
                     keyboardType: TextInputType.visiblePassword,
-                    onChanged: (s){
-                      phone.value=s;
-                    },
-                    //controller: password,
+
+                    controller: p,
                     decoration:  InputDecoration(
                         //labelText: "পাসওয়ার্ড লিখুন",
                         hintText: "enter gmail",
@@ -99,10 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: TextField(
                     keyboardType: TextInputType.visiblePassword,
-                    onChanged: (s){
-                      password.value=s;
-                    },
-                    //controller: password,
+
+                    controller: pw,
                     decoration: InputDecoration(
                         //labelText: "পাসওয়ার্ড লিখুন",
 
@@ -120,7 +118,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                     width: width,
                     child: ElevatedButton(onPressed: ()async{
-                      await fireBase.signIn(phone.value, password.value);
+                      print(p.text.trim());
+                      await fireBase.signIn(p.text.trim(), pw.text.trim());
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const NavegationBar()), (route) => false);
                     }, child: const Text("প্রবেশ করুন"))),
                 SizedBox(height: height*0.02,),

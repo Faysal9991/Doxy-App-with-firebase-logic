@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -190,7 +191,13 @@ class Number4PageSecondContainer extends StatelessWidget {
             SizedBox(width: width*0.35,),
             Text("1122345",  style: GoogleFonts.lato(color:Colors.black,fontSize: 13)),
             SizedBox(width: width*0.02,),
-            Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14))
+            GestureDetector(
+              onTap: (){
+                Clipboard.setData(ClipboardData(text: "1122345")).then((_){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("1122345 copied to clipboard")));
+                });
+              },
+                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14)))
           ],
         ),
       ),
@@ -210,7 +217,13 @@ class Number4PageSecondContainer extends StatelessWidget {
             SizedBox(width: width*0.31,
               child: Text("http//:www.cbcubuib.com",  style: GoogleFonts.lato(color:Colors.black,fontSize: 13))),
             SizedBox(width: width*0.15,),
-            Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14))
+            GestureDetector(
+              onTap: (){
+                Clipboard.setData(ClipboardData(text: "http//:www.cbcubuib.com")).then((_){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("http//:www.cbcubuib.com copied to clipboard")));
+                });
+              },
+                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14)))
           ],
         ),
       ),
