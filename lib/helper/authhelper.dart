@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jadeais/mls/profilemodel.dart';
 
 import '../mls/botmodel.dart';
@@ -11,16 +14,36 @@ class FireBase{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   signUp(String email, String password)async{
+    EasyLoading.show(status: "Creating Profile");
+    final x = await auth.createUserWithEmailAndPassword(email: email, password: password)
 
-    final x = await auth.createUserWithEmailAndPassword(email: email, password: password).then((value)async{
+        .then((value)async{
       Profile profile = Profile(uid: value.user!.uid, username: email, profileImage: "", email: email);
       final y = await firestore.collection("profile").doc(value.user!.uid).set(profile.toJson());
+    })
+    .onError((error, stackTrace) {
+      EasyLoading.dismiss();
+      EasyLoading.showError("error");
+
     });
+
+    EasyLoading.showSuccess("Successful");
+    EasyLoading.dismiss();
 
   }
 
   signIn(String email, String password)async{
-    final x = await auth.signInWithEmailAndPassword(email: email, password: password);
+    EasyLoading.show(status: "Signing in");
+    final x = await auth.signInWithEmailAndPassword(email: email, password: password).catchError((error, stackTrace){
+
+      EasyLoading.showError("Error");
+      EasyLoading.dismiss();
+
+
+    });
+    EasyLoading.showSuccess("Successful");
+
+    EasyLoading.dismiss();
   }
   Future<Profile> myProfile()async{
       Profile modelUser = Profile();

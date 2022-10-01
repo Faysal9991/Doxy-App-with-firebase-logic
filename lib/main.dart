@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
 
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
             return LoginPage();
           }
       ),
+      builder: EasyLoading.init(),
     );
   }
 }
