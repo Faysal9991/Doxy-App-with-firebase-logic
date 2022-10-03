@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
@@ -18,6 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   ValueNotifier<String> password = ValueNotifier("");
   TextEditingController p = TextEditingController();
   TextEditingController pw = TextEditingController();
+  TextEditingController repetPassowrd = TextEditingController();
   FireBase fireBase = FireBase();
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: height*0.18,),
-                 const Text("স্বাগতম Jade Ai!",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                 const Text("স্বাগতম Doxi!",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                 SizedBox(height: height*0.06,),
                  const Text("Input your gmail adress",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
@@ -110,15 +112,58 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
+                 SizedBox(height: height*0.02,),
+                const Text("Repeat password",style: TextStyle(color: Color(0xffA5A3A3)),),
+                SizedBox(height: height*0.02,),
+                Container(
+                  height: height*0.07,
+
+                  decoration: BoxDecoration(
+                      color: const Color(0xffF6F6F6),
+                      borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: TextField(
+
+                    controller: repetPassowrd,
+                    decoration: InputDecoration(
+                      hintText: "Repeat password",
+                        //labelText: "পাসওয়ার্ড লিখুন",
+                        contentPadding: EdgeInsets.all(20.0),
+                        border: InputBorder.none,
+                        suffixIcon: IconButton(onPressed: (){},
+                            icon: Icon(Icons.remove_red_eye)
+                        )
+                    ),
+                  ),
+                ),
+              
                 SizedBox(height: height*0.02,),
                 const Text("পাসওয়ার্ড ভুলে গেছেন?",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 SizedBox(
                     width: width,
                     child: ElevatedButton(onPressed: ()async{
-                      //print(phone.value);
-                      await fireBase.signUp(p.text.trim(), pw.text.trim());
+                      if (pw.text==repetPassowrd.text){
+                                  await fireBase.signUp(p.text.trim(), pw.text.trim());
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>NavegationBar()), (route) => false);
+                      }else{
+                          var snackBar = SnackBar(
+                                                  elevation: 0,
+                                                  behavior: SnackBarBehavior.floating,
+                                                  backgroundColor: Colors.transparent,
+                                                  content: AwesomeSnackbarContent(
+                                                    title: 'oops!',
+                                                    message:
+                                                    'Password don\'t match',
+                                                    contentType: ContentType.failure,
+                                                  ),
+                                                );
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(snackBar);
+                      }
+                      //print(phone.value);
+            
                     }, child: const Text("প্রবেশ করুন"))),
                 SizedBox(height: height*0.02,),
                 Row(

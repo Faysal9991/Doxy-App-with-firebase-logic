@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "outputFile": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/f0589360d9c02b2f33aa86e62a9e0782/transformed/jetified-play-services-basement-18.0.0/res/values-uk/values.xml",
@@ -55,6 +55,23 @@
                     }
                 },
                 {
+                    "source": "/Users/macbookair/.gradle/caches/transforms-3/66837815fe94c313575b1303c20b91c2/transformed/jetified-play-services-ads-21.0.0/res/values-uk/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "199,284,391,441,558,617,723,818,865,944,980,1017,1069,1143",
+                        "endColumns": "84,106,49,116,58,105,94,46,78,35,36,51,73,45",
+                        "endOffsets": "283,390,440,557,616,722,817,864,943,979,1016,1068,1142,1188"
+                    },
+                    "to": {
+                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2726,2815,2926,2980,3101,3164,3274,3373,3424,3507,3547,3588,3644,3722",
+                        "endColumns": "88,110,53,120,62,109,98,50,82,39,40,55,77,49",
+                        "endOffsets": "2810,2921,2975,3096,3159,3269,3368,3419,3502,3542,3583,3639,3717,3767"
+                    }
+                },
+                {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/res/values-uk/values-uk.xml",
                     "from": {
                         "startLines": "2",
@@ -64,11 +81,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "24",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "2726",
+                        "startOffsets": "3772",
                         "endColumns": "100",
-                        "endOffsets": "2822"
+                        "endOffsets": "3868"
                     }
                 }
             ]

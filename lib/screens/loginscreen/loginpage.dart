@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: height*0.18,),
-                const Text("স্বাগতম Jade Ai!",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                const Text("স্বাগতম Doxi!",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                 SizedBox(height: height*0.06,),
                 const Text("Please enter your Gmail",style: const TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),

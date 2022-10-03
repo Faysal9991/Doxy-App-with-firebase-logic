@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sw/values-sw.xml",
+            "outputFile": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sw/values-sw.xml",
             "map": [
                 {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/res/values-sw/values-sw.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "24",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "2751",
+                        "startOffsets": "3778",
                         "endColumns": "100",
-                        "endOffsets": "2847"
+                        "endOffsets": "3874"
                     }
                 },
                 {
@@ -52,6 +52,23 @@
                         "startOffsets": "55,159,315,440,549,712,837,956,1216,1381,1487,1641,1768,1918,2077,2145,2220",
                         "endColumns": "103,155,124,108,162,124,118,113,164,105,153,126,149,158,67,74,95",
                         "endOffsets": "154,310,435,544,707,832,951,1065,1376,1482,1636,1763,1913,2072,2140,2215,2311"
+                    }
+                },
+                {
+                    "source": "/Users/macbookair/.gradle/caches/transforms-3/66837815fe94c313575b1303c20b91c2/transformed/jetified-play-services-ads-21.0.0/res/values-sw/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "199,274,379,431,533,587,709,792,833,929,963,996,1045,1124",
+                        "endColumns": "74,104,51,101,53,121,82,40,95,33,32,48,78,45",
+                        "endOffsets": "273,378,430,532,586,708,791,832,928,962,995,1044,1123,1169"
+                    },
+                    "to": {
+                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2751,2830,2939,2995,3101,3159,3285,3372,3417,3517,3555,3592,3645,3728",
+                        "endColumns": "78,108,55,105,57,125,86,44,99,37,36,52,82,49",
+                        "endOffsets": "2825,2934,2990,3096,3154,3280,3367,3412,3512,3550,3587,3640,3723,3773"
                     }
                 },
                 {

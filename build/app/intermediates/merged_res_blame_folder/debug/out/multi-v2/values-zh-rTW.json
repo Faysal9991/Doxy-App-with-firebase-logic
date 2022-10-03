@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/1a2cb69c9228e95e429c828957f3a3b6/transformed/jetified-play-services-base-18.0.1/res/values-zh-rTW/values.xml",
@@ -55,6 +55,23 @@
                     }
                 },
                 {
+                    "source": "/Users/macbookair/.gradle/caches/transforms-3/66837815fe94c313575b1303c20b91c2/transformed/jetified-play-services-ads-21.0.0/res/values-zh-rTW/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "203,262,326,376,450,504,573,635,667,712,742,772,806,847",
+                        "endColumns": "58,63,49,73,53,68,61,31,44,29,29,33,40,31",
+                        "endOffsets": "261,325,375,449,503,572,634,666,711,741,771,805,846,878"
+                    },
+                    "to": {
+                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2244,2307,2375,2429,2507,2565,2638,2704,2740,2789,2823,2857,2895,2940",
+                        "endColumns": "62,67,53,77,57,72,65,35,48,33,33,37,44,35",
+                        "endOffsets": "2302,2370,2424,2502,2560,2633,2699,2735,2784,2818,2852,2890,2935,2971"
+                    }
+                },
+                {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2",
@@ -64,11 +81,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "24",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "2244",
+                        "startOffsets": "2976",
                         "endColumns": "100",
-                        "endOffsets": "2340"
+                        "endOffsets": "3072"
                     }
                 }
             ]

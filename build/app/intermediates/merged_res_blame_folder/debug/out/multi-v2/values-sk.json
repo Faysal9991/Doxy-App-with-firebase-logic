@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sk/values-sk.xml",
+            "outputFile": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sk/values-sk.xml",
             "map": [
                 {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/1a2cb69c9228e95e429c828957f3a3b6/transformed/jetified-play-services-base-18.0.1/res/values-sk/values.xml",
@@ -21,6 +21,23 @@
                     }
                 },
                 {
+                    "source": "/Users/macbookair/.gradle/caches/transforms-3/66837815fe94c313575b1303c20b91c2/transformed/jetified-play-services-ads-21.0.0/res/values-sk/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "199,275,382,432,551,611,710,799,843,922,956,993,1052,1125",
+                        "endColumns": "75,106,49,118,59,98,88,43,78,33,36,58,72,45",
+                        "endOffsets": "274,381,431,550,610,709,798,842,921,955,992,1051,1124,1170"
+                    },
+                    "to": {
+                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2749,2829,2940,2994,3117,3181,3284,3377,3425,3508,3546,3587,3650,3727",
+                        "endColumns": "79,110,53,122,63,102,92,47,82,37,40,62,76,49",
+                        "endOffsets": "2824,2935,2989,3112,3176,3279,3372,3420,3503,3541,3582,3645,3722,3772"
+                    }
+                },
+                {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/res/values-sk/values-sk.xml",
                     "from": {
                         "startLines": "2",
@@ -30,11 +47,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "24",
+                        "startLines": "38",
                         "startColumns": "4",
-                        "startOffsets": "2749",
+                        "startOffsets": "3777",
                         "endColumns": "100",
-                        "endOffsets": "2845"
+                        "endOffsets": "3873"
                     }
                 },
                 {

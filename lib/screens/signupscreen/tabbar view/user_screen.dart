@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/mls/profilemodel.dart';
+import 'package:jadeais/screens/new_recharge_screen.dart';
+import 'package:jadeais/screens/new_withdraw_screen.dart';
 import 'package:jadeais/screens/recharge_screen.dart';
 import 'package:jadeais/screens/withdraw_screen.dart';
 
@@ -168,30 +170,35 @@ class _UserScreenState extends State<UserScreen> {
                     Padding(
                       padding:
                           EdgeInsets.only(top: height * 0.02, left: width * 0.1),
-                      child: Row(
-                        children: [
-                          profileEarnig(
-                              height: height,
-                              days: "7 Days",
-                              money: "370.89 BDT",
-                              parcent: "+42%"),
-                          SizedBox(
-                            width: width * 0.09,
-                          ),
-                          profileEarnig(
-                              height: height,
-                              days: "30 Days",
-                              money: "750.89 BDT",
-                              parcent: "+92%"),
-                          SizedBox(
-                            width: width * 0.09,
-                          ),
-                          profileEarnig(
-                              height: height,
-                              days: "All",
-                              money: "6839.89 BDT",
-                              parcent: "+432%"),
-                        ],
+                      child: FutureBuilder<double>(
+                         future: fireBase.todaytotalincomefrombots(),
+                        builder: (context, d) {
+                          return Row(
+                            children: [
+                              profileEarnig(
+                                  height: height,
+                                  days: "7 Days",
+                                  money: "${d.data!*7} BDT",
+                                  parcent: "+42%"),
+                              SizedBox(
+                                width: width * 0.09,
+                              ),
+                              profileEarnig(
+                                  height: height,
+                                  days: "30 Days",
+                                  money: "${d.data!*30} BDT",
+                                  parcent: "+92%"),
+                              SizedBox(
+                                width: width * 0.09,
+                              ),
+                              profileEarnig(
+                                  height: height,
+                                  days: "All",
+                                  money: "${d.data!*60} BDT",
+                                  parcent: "+432%"),
+                            ],
+                          );
+                        }
                       ),
                     )
                   ],
