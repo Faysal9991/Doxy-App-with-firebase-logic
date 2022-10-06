@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jadeais/mls/profilemodel.dart';
 
 import '../mls/botmodel.dart';
+import '../mls/mainadminmodel.dart';
 import '../mls/rechargemodel.dart';
 import '../mls/withdrawmodel.dart';
 
@@ -169,6 +170,11 @@ class FireBase{
   Future<bool> withdrawRequest(WithdrawModel withdrawModel)async{
     final x = await firestore.collection("withdraws").doc().set(withdrawModel.toJson()).onError((error, stackTrace) => false);
     return true;
+  }
+
+  Stream<MainAdminModel> mainAdminData(){
+    var y = firestore.collection("mainadmin").doc("staticdata").snapshots().map((event) => MainAdminModel.fromJson(event.data()!));
+    return y;
   }
 
 

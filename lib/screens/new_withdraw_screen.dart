@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/mls/withdrawmodel.dart';
 
 
 class WithdrawScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class WithdrawScreen extends StatefulWidget {
 
 class _WithdrawScreenState extends State<WithdrawScreen> {
   FireBase fireBase = FireBase();
- TextEditingController textEditingController = TextEditingController();
+ TextEditingController amount = TextEditingController();
   TextEditingController phone = TextEditingController();
 
   String? selectedValue;
@@ -65,6 +66,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         child:  Padding(
                                           padding:  EdgeInsets.only(top: height*0.01),
                                           child: TextField(
+                                            controller: amount,
                                             inputFormatters: [
         LengthLimitingTextInputFormatter(11),
       ],
@@ -96,6 +98,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                         child:  Padding(
                                            padding:  EdgeInsets.only(top: height*0.01),
                                           child: TextField(
+                                            controller: phone,
                                               inputFormatters: [
         LengthLimitingTextInputFormatter(15),
       ],
@@ -114,7 +117,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ,
              
           
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: ()async{
+                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
+
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),
