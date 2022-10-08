@@ -20,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController p = TextEditingController();
   TextEditingController pw = TextEditingController();
   TextEditingController repetPassowrd = TextEditingController();
+  TextEditingController rafer = TextEditingController();
   FireBase fireBase = FireBase();
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,26 +69,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
 
-              
-                /*Container(
-                  height: height*0.07,
 
-                  decoration: BoxDecoration(
-                      color: const Color(0xffF6F6F6),
-                      borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: TextField(
-                    controller: phone,
-                    decoration: InputDecoration(
-                        //labelText: "Phone Number",
-                        contentPadding: EdgeInsets.all(20.0),
-                        border: InputBorder.none,
-                        *//*suffixIcon: IconButton(onPressed: (){},
-                            icon: const Icon(Icons.remove_red_eye)
-                        )*//*
-                    ),
-                  ),
-                ),*/
+
                 SizedBox(height: height*0.02,),
                 const Text("পাসওয়ার্ড লিখুন",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
@@ -136,9 +119,26 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-              
+
+
+
                 SizedBox(height: height*0.02,),
-                const Text("পাসওয়ার্ড ভুলে গেছেন?",style: TextStyle(color: Color(0xffA5A3A3)),),
+                Container(
+                  height: height*0.05,
+
+                  decoration: BoxDecoration(
+                      color: const Color(0xffF6F6F6),
+                      borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: TextField(
+                    controller: rafer,
+                    decoration: InputDecoration(
+                      hintText: "Enter refer code",
+                      contentPadding: EdgeInsets.all(20.0),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
                 SizedBox(height: height*0.02,),
                 SizedBox(
                     width: width,
@@ -163,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                                     .showSnackBar(snackBar);
                       }
                       //print(phone.value);
-            
+
                     }, child: const Text("প্রবেশ করুন"))),
                 SizedBox(height: height*0.02,),
                 Row(

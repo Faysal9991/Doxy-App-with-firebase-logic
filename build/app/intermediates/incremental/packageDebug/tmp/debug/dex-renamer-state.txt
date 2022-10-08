@@ -1,9 +1,9 @@
-#Mon Oct 03 09:22:33 BDT 2022
-base.2=/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
+#Sat Oct 08 00:37:23 BDT 2022
+base.2=/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
 path.2=classes3.dex
-base.1=/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
+base.1=/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
 path.1=classes2.dex
-base.0=/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+base.0=/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex

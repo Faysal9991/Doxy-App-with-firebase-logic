@@ -1,13 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/helper/coin_model.dart';
 import 'package:jadeais/screens/gudie.dart';
 import 'package:jadeais/screens/robot%20details/robot_screen.dart';
 import 'package:jadeais/screens/support.dart';
 import 'package:jadeais/widgtes/home_page_help_widget.dart';
 import '../../../mls/profilemodel.dart';
+import '../../../widgtes/coin_card.dart';
 import '../../../widgtes/slider_view.dart';
 import '../../about.dart';
 import '../../buy_robot_screen.dart';
@@ -215,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.03),
                     child: Container(
-                      height: height * 0.3,
+                      height: height * 0.2,
                       width: width,
                       decoration: const BoxDecoration(color: Colors.white54),
                       child: Padding(
@@ -278,129 +281,128 @@ class _HomePageState extends State<HomePage> {
                                 ):Center(child: CircularProgressIndicator(),);
                               }
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Container(
-                                height: height * 0.05,
-                                width: width,
-                                child: Expanded(
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: 5,
-                                      itemBuilder: (context, index) {
-                                        return Container(
-                                          margin: EdgeInsets.only(right: 10),
-                                          height: 10,
-                                          width: 10,
-                                          color: Colors.amber,
-                                        );
-                                      }),
-                                ),
-                              ),
+                            Expanded(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: coinList.length,
+                              itemBuilder: (context, index) {
+                                if (coinList.isNotEmpty) {
+                                  return CoinCard(
+                                    height: height,
+                                    width: width,
+                                    name: coinList[index].name!,
+                                    symbol: coinList[index].symbol!,
+                                    imageUrl: coinList[index].imageUrl!,
+                                    price: coinList[index].price!.toDouble(),
+                                    change: coinList[index].change!.toDouble(),
+                                    changePercentage: coinList[index].changePercentage!.toDouble(),
+                                  );
+                                } else {
+                                  return Center(child: CupertinoActivityIndicator());
+                                }
+                              },
                             ),
-                          ],
+                          )
+                           ],
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BuyRobot()));
-                      },
-                      child: Container(
-                        height: height * 0.2,
-                        width: width,
-                        decoration: BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.circular(9)),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Robot Buying USDT",
-                                    style: GoogleFonts.lato(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w800),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: width * 0.02),
-                                    child: Text(
-                                        "Buy Ai robots, active\n to get high rewards,\n and make money\n easily",
-                                        style: GoogleFonts.lato(
-                                          color: Colors.white,
-                                          fontSize: 13,
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: width * 0.02),
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white),
-                                        onPressed: () {},
-                                        child: Text(
-                                          "Buy Now",
-                                          style:
-                                              GoogleFonts.lato(color: Colors.black),
-                                        )),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Row(
+                    child: Container(
+                      height: height * 0.2,
+                      width: width,
+                      decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(9)),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  height: height * 0.19,
-                                  width: width * 0.2,
-                                  child: Image.asset(
-                                    "assets/robot.png",
-                                    fit: BoxFit.cover,
-                                  ),
+                                Text(
+                                  "Robot Buying USDT",
+                                  style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w800),
                                 ),
                                 SizedBox(
-                                  width: width * 0.01,
+                                  height: height * 0.01,
                                 ),
-                                const Icon(
-                                  FontAwesomeIcons.arrowRight,
-                                  color: Colors.white,
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  child: Text(
+                                      "Buy Ai robots, active\n to get high rewards,\n and make money\n easily",
+                                      style: GoogleFonts.lato(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                      )),
                                 ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                Container(
-                                  height: height * 0.04,
-                                  width: width * 0.17,
-                                  decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topRight,
-                                        end: Alignment.bottomLeft,
-                                        colors: [
-                                          Colors.teal,
-                                          Colors.black,
-                                        ],
-                                      ),
-                                      borderRadius: BorderRadius.circular(2)),
-                                  child: Center(
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white),
+                                      onPressed: () {
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BuyRobot()));
+                                        },
                                       child: Text(
-                                    "Here me",
-                                    style:
-                                        GoogleFonts.ebGaramond(color: Colors.white),
-                                  )),
-                                ),
+                                        "Buy Now",
+                                        style:
+                                            GoogleFonts.lato(color: Colors.black),
+                                      )),
+                                )
                               ],
-                            )
-                          ],
-                        ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: height * 0.19,
+                                width: width * 0.2,
+                                child: Image.asset(
+                                  "assets/robot.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.01,
+                              ),
+                              const Icon(
+                                FontAwesomeIcons.arrowRight,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: width * 0.01,
+                              ),
+                              Container(
+                                height: height * 0.04,
+                                width: width * 0.17,
+                                decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topRight,
+                                      end: Alignment.bottomLeft,
+                                      colors: [
+                                        Colors.teal,
+                                        Colors.black,
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(2)),
+                                child: Center(
+                                    child: Text(
+                                  "Here me",
+                                  style:
+                                      GoogleFonts.ebGaramond(color: Colors.white),
+                                )),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -432,49 +434,38 @@ class _HomePageState extends State<HomePage> {
                                 child: Row(
 
                                   children: [
-                                    GestureDetector(
-                                      onTap:(){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GuideScreen()));
-                              },
-                                      child: HelpWidget(
-                                          height: height,
-                                          width: width,
-                                        svgname: "assets/question.svg",
-                                        iconName: "guide",
-                                         gotoScreenName: (){}),
-                                    ),
+                                    HelpWidget(
+                                        height: height,
+                                        width: width,
+                                      svgname: "assets/question.svg",
+                                      iconName: "guide",
+                                       gotoScreenName: (){
+                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const GuideScreen()));
+                                       }),
                                        SizedBox(width: width*0.1,),
-                                       GestureDetector(
-                                         onTap: (){
-                                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SupportScreen()));
-
-                                         },
-                                         child: HelpWidget(
-                                          height: height,
-                                          width: width,
+                                       HelpWidget(
+                                        height: height,
+                                        width: width,
                                       svgname: "assets/hand.svg",
                                       iconName: "support",
-                                         gotoScreenName: (){}),
-                                       ),
+                                       gotoScreenName: (){
+                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SupportScreen()));
+                                       }),
                                         SizedBox(width: width*0.1,),
-                                       GestureDetector(
-                                         onTap: (){
-                                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AboutScreen()));
-
-                                         },
-                                         child: HelpWidget(
-                                            height: height,
-                                          width: width,
+                                       HelpWidget(
+                                          height: height,
+                                        width: width,
                                       svgname: "assets/message.svg",
                                       iconName: "about",
-                                         gotoScreenName: (){}),
-                                       ),
+                                       gotoScreenName: (){
+                                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AboutScreen()));
+                                       }),
                                         SizedBox(width: width*0.1,),
                                        HelpWidget(
                                           height: height,
                                         width: width,
                                       svgname: "assets/person.svg",
-                                      iconName: "guide",
+                                      iconName: "profile",
                                        gotoScreenName: (){}),
 
                                     ],

@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(height: height*0.02,),
-                const Text("পাসওয়ার্ড ভুলে গেছেন?",style: TextStyle(color: Color(0xffA5A3A3)),),
+                const Text("Forget passowrd?",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 SizedBox(
                     width: width,

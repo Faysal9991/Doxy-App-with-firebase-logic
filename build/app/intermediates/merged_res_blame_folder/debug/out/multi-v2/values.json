@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/59f877328d507eba95abe3e3c7c887f9/transformed/work-runtime-2.7.0/res/values/values.xml",
@@ -112,23 +112,6 @@
                     }
                 },
                 {
-                    "source": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/build/app/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,281,385,494,614,705",
-                        "endColumns": "143,81,103,108,119,90,67",
-                        "endOffsets": "194,276,380,489,609,700,768"
-                    },
-                    "to": {
-                        "startLines": "131,135,136,137,138,139,154",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "9316,9675,9757,9861,9970,10090,11594",
-                        "endColumns": "143,81,103,108,119,90,67",
-                        "endOffsets": "9455,9752,9856,9965,10085,10176,11657"
-                    }
-                },
-                {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/3ccfe3c85f973001527a80224c3926d5/transformed/jetified-play-services-ads-lite-21.0.0/res/values/values.xml",
                     "from": {
                         "startLines": "4,14",
@@ -167,6 +150,25 @@
                     }
                 },
                 {
+                    "source": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
+                    },
+                    "to": {
+                        "startLines": "163,168",
+                        "startColumns": "4,4",
+                        "startOffsets": "12089,12397",
+                        "endLines": "167,170",
+                        "endColumns": "12,12",
+                        "endOffsets": "12392,12561"
+                    }
+                },
+                {
                     "source": "/Users/macbookair/.gradle/caches/transforms-3/297942c3957902ff7659eb1bc47c3617/transformed/browser-1.4.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -184,22 +186,20 @@
                     }
                 },
                 {
-                    "source": "/Users/macbookair/Documents/doxi ai/jade-ai-master-master/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/generated/res/google-services/debug/values/values.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,281,385,494,614,705",
+                        "endColumns": "143,81,103,108,119,90,67",
+                        "endOffsets": "194,276,380,489,609,700,768"
                     },
                     "to": {
-                        "startLines": "163,168",
-                        "startColumns": "4,4",
-                        "startOffsets": "12089,12397",
-                        "endLines": "167,170",
-                        "endColumns": "12,12",
-                        "endOffsets": "12392,12561"
+                        "startLines": "131,135,136,137,138,139,154",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "9316,9675,9757,9861,9970,10090,11594",
+                        "endColumns": "143,81,103,108,119,90,67",
+                        "endOffsets": "9455,9752,9856,9965,10085,10176,11657"
                     }
                 }
             ]

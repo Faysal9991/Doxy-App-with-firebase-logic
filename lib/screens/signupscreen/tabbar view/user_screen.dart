@@ -6,8 +6,7 @@ import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/mls/profilemodel.dart';
 import 'package:jadeais/screens/new_recharge_screen.dart';
 import 'package:jadeais/screens/new_withdraw_screen.dart';
-import 'package:jadeais/screens/recharge_screen.dart';
-import 'package:jadeais/screens/withdraw_screen.dart';
+
 
 import '../../../widgtes/slider_view.dart';
 import '../../robot details/robot_screen.dart';
@@ -141,6 +140,7 @@ class _UserScreenState extends State<UserScreen> {
                         future: fireBase.todaytotalincomefrombots(),
                         builder: (context, d) {
                           return d.hasData?Row(
+
                             children: [
                               Text(
                                 "Taday's earning's",
@@ -173,7 +173,7 @@ class _UserScreenState extends State<UserScreen> {
                       child: FutureBuilder<double>(
                          future: fireBase.todaytotalincomefrombots(),
                         builder: (context, d) {
-                          return Row(
+                          return Row(mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               profileEarnig(
                                   height: height,
@@ -196,6 +196,7 @@ class _UserScreenState extends State<UserScreen> {
                                   days: "All",
                                   money: "${d.data!*60} BDT",
                                   parcent: "+432%"),
+                              SizedBox(width: width*0.1,)
                             ],
                           );
                         }
@@ -296,28 +297,28 @@ class _UserScreenState extends State<UserScreen> {
                       w: width,
                       iconname: FontAwesomeIcons.sackDollar,
                       iconDetais: "Robot income today",
-                      blance: "678 BDT"),
+                      blance: "000 BDT"),
                       SizedBox(height: height*.02,),
                        Belowlist(
                       h: height,
                       w: width,
                       iconname: FontAwesomeIcons.flask,
                       iconDetais: "Cumulstive robot\n income",
-                      blance: "678 BDT"),
+                      blance: "000 BDT"),
                        SizedBox(height: height*.02,),
                        Belowlist(
                       h: height,
                       w: width,
                       iconname: FontAwesomeIcons.magnifyingGlassDollar,
                       iconDetais: "yestarday's agent\n income",
-                      blance: "678 BDT"),
+                      blance: "000 BDT"),
                        SizedBox(height: height*.02,),
                        Belowlist(
                       h: height,
                       w: width,
                       iconname: FontAwesomeIcons.magnifyingGlassChart,
                       iconDetais: "Accumulative agent\n income",
-                      blance: "678 BDT"),
+                      blance: "000 BDT"),
                   ],
                 ),
               )
