@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/mls/botmodel.dart';
 import 'package:jadeais/mls/profilemodel.dart';
 import 'package:jadeais/screens/new_recharge_screen.dart';
 import 'package:jadeais/screens/new_withdraw_screen.dart';
@@ -62,7 +63,6 @@ class _UserScreenState extends State<UserScreen> {
                 height: height * 0.01,
               ),
               Container(
-                height: height * 0.24,
                 width: width,
                 color: Colors.white,
                 child: Column(
@@ -201,7 +201,8 @@ class _UserScreenState extends State<UserScreen> {
                           );
                         }
                       ),
-                    )
+                    ),
+                    SizedBox(height: height*0.01,)
                   ],
                 ),
               ),
@@ -242,10 +243,15 @@ class _UserScreenState extends State<UserScreen> {
                               SizedBox(
                                 width: width * 0.02,
                               ),
-                              const Text(
-                                "Number of robots at work: 1",
-                                style: TextStyle(color: Colors.black),
-                              )
+                              FutureBuilder<List<Bot>>(
+                                  future: fireBase.allmyactivebot(),
+          builder: (context, snap) {
+          return  Text(
+          "Number of robots at work ${snap.data!.length.toString()}",
+          style: TextStyle(color: Colors.black),
+          );
+          }),
+
                             ],
                           ),
                         ),
@@ -292,12 +298,18 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                     ),
                      SizedBox(height: height*.02,),
-                    Belowlist(
-                      h: height,
-                      w: width,
-                      iconname: FontAwesomeIcons.sackDollar,
-                      iconDetais: "Robot income today",
-                      blance: "000 BDT"),
+                    FutureBuilder<double>(
+
+                        future: fireBase.todaytotalincomefrombots(),
+                      builder: (context, d) {
+                        return Belowlist(
+                          h: height,
+                          w: width,
+                          iconname: FontAwesomeIcons.sackDollar,
+                          iconDetais: "Robot income total",
+                          blance: "${d.data} BDT");
+                      }
+                    ),
                       SizedBox(height: height*.02,),
                        Belowlist(
                       h: height,

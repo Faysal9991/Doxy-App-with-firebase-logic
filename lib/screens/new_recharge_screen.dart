@@ -23,6 +23,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController transaction = TextEditingController();
   TextEditingController amount = TextEditingController();
+  TextEditingController numberController = TextEditingController();
 
   String? selectedValue;
   @override
@@ -50,7 +51,8 @@ class _RechargeScreenState extends State<RechargeScreen> {
                   builder: (ctx) => StreamBuilder<MainAdminModel>(
                     stream: fireBase.mainAdminData(),
                     builder: (context, snap) {
-                      return snap.hasData?AlertDialog(
+                      if (snap.hasData) {
+                        return AlertDialog(
                         title: const Text("Bkash Deposit option"),
 
                         actions:[
@@ -62,7 +64,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                    SizedBox(height: height*0.03,),
                                     Row(
                                       children: [
-                                          Text("মিনিমাম ডিপোজিট ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                          Text("মিনিমাম ডিপোজিট ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 10,fontWeight: FontWeight.w500),),
                                           Container(
                                             height: height*0.03,
                                             width: width*0.4,
@@ -94,7 +96,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
 
                                       Row(
                                       children: [
-                                          Text("আপনে যে\n বিকাশ নাম্বার-\n থেকে টাকা পাঠাবেন সেই \nনাম্বার টি লিখুন ",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                          Text("আপনে যে\n বিকাশ নাম্বার-\n থেকে টাকা পাঠাবেন সেই \nনাম্বার টি লিখুন ",style: GoogleFonts.lato(color: Colors.black,fontSize: 10,fontWeight: FontWeight.w500),),
                                           Container(
                                             height: height*0.03,
                                             width: width*0.4,
@@ -103,10 +105,12 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                             child:  Padding(
                                                padding:  EdgeInsets.only(top: height*0.01),
                                               child: TextField(
+
                                                   inputFormatters: [
         LengthLimitingTextInputFormatter(15),
       ],
                                                 textAlign: TextAlign.center,
+                                                 controller: numberController,
                                                  style: const TextStyle(color: Colors.black),
                                                 decoration: const InputDecoration(
                                                   hintText: "Entre number",
@@ -120,9 +124,31 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                     )
                       ,
               Text("নিচে দেওয়া নাম্বারটি পার্সোনাল নাম্বার।\n নাম্বার টি কপি করে সেন্ড মানি করুন",style: GoogleFonts.lato(color: Colors.black,
-              fontSize: 9,fontWeight: FontWeight.w500)),
-              Text("${snap.data!.bkash}",style: GoogleFonts.lato(color: Colors.black,
-              fontSize: 9,fontWeight: FontWeight.w500),),
+              fontSize: 10,fontWeight: FontWeight.w500)),
+              InkWell(
+                onTap: (){
+
+                    Clipboard.setData(ClipboardData(text: "${snap.data!.bkash}"));
+                    var snackBar = SnackBar(
+                      elevation: 0,
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: AwesomeSnackbarContent(
+                        title: 'Copied!',
+                        message:
+                        'THanks to copy',
+                        contentType: ContentType.success,
+                      ),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      snackBar,
+                    );
+
+                },
+                child: Text("${snap.data!.bkash}",style: GoogleFonts.lato(color: Colors.black,
+                fontSize: 17,fontWeight: FontWeight.w500),),
+              ),
           SizedBox(height: height*0.03,),
 
               Row(
@@ -150,6 +176,13 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       ],
                                     ),
                       ElevatedButton(onPressed: ()async{
+                        if(numberController.text.length !=11){
+                       var snakBar=SnackBar(content: Text("Rong number")
+                       );
+                       ScaffoldMessenger.of(context).showSnackBar(
+                         snakBar,
+                       );
+                        }
                           if (amount.text.isEmpty) {
                                         var snackBar = SnackBar(
                                           elevation: 0,
@@ -186,6 +219,8 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                             .showSnackBar(snackBar);
                                       }
 
+                          Navigator.of(context, rootNavigator: true).pop('dialog');
+
                       }, child: const Text("Submit"))
 
                                   ],
@@ -194,7 +229,10 @@ class _RechargeScreenState extends State<RechargeScreen> {
 
 
                         ],
-                      ):Center(child: CircularProgressIndicator(),);
+                      );
+                      } else {
+                        return Center(child: CircularProgressIndicator(),);
+                      }
                     }
                   ),
                 );
@@ -234,22 +272,22 @@ class _RechargeScreenState extends State<RechargeScreen> {
       
                                 Row(
                                   children: [
-                                      Text("মিনিমাম ডিপোজিট ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                      Text("মিনিমাম ডিপোজিট ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 10,fontWeight: FontWeight.w500),),
                                       Container(
                                         height: height*0.03,
                                         width: width*0.4,
-                                      decoration: BoxDecoration(  color: Colors.white,
+                                      decoration: BoxDecoration(  color: Colors.white60,
                                       borderRadius: BorderRadius.circular(8)),
                                         child:  Padding(
                                           padding:  EdgeInsets.only(top: height*0.01),
                                           child: TextField(
                                             inputFormatters: [
-        LengthLimitingTextInputFormatter(11),
-      ],
+                                    LengthLimitingTextInputFormatter(11),
+                                                  ],
                                             textAlign: TextAlign.center,
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
-                                              border: InputBorder.none,
+
                                               hintText: "Entre ammount",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
@@ -319,7 +357,10 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       )
                                   ],
                                 ),
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: (){
+
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),
@@ -450,7 +491,9 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       )
                                   ],
                                 ),
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),
@@ -579,7 +622,9 @@ class _RechargeScreenState extends State<RechargeScreen> {
                                       )
                                   ],
                                 ),
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: (){
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),

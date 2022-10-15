@@ -119,7 +119,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           
                   ElevatedButton(onPressed: ()async{
                     await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
-                    Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
 
                   }, child: const Text("Submit"))
@@ -158,7 +157,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: const Text("Nogod Deposit option"),
+                    title: const Text("Nogod Withdraw option"),
                   
                     actions:[
                          Padding(
@@ -170,7 +169,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                SizedBox(height: height*0.03,),
                                 Row(
                                   children: [
-                                      Text("মিনিমাম withdraw ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
                                       Container(
                                         height: height*0.03,
                                         width: width*0.4,
@@ -186,7 +185,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "Entre ammount",
+                                              hintText: "Enter amount",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               
@@ -216,7 +215,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                             textAlign: TextAlign.center,
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
-                                              hintText: "Entre number",
+                                              hintText: "Enter number",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               
@@ -265,7 +264,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: const Text("Rocket Deposit option"),
+                    title: const Text("Rocket Withdraw option"),
                   
                     actions:[
                          Padding(
@@ -276,7 +275,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                SizedBox(height: height*0.03,),
                                 Row(
                                   children: [
-                                      Text("মিনিমাম withdraw ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
                                       Container(
                                         height: height*0.03,
                                         width: width*0.4,
@@ -292,7 +291,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "Entre ammount",
+                                              hintText: "Enter amount",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               
@@ -322,7 +321,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                             textAlign: TextAlign.center,
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
-                                              hintText: "Entre number",
+                                              hintText: "Enter number",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               
@@ -371,7 +370,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: const Text("Upay Deposit option"),
+                    title: const Text("Upay Withdraw option"),
                   
                     actions:[
                          Padding(
@@ -383,7 +382,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                SizedBox(height: height*0.03,),
                                 Row(
                                   children: [
-                                      Text("মিনিমাম withdraw ৳20",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
+                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
                                       Container(
                                         height: height*0.03,
                                         width: width*0.4,
@@ -399,7 +398,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "Entre ammount",
+                                              hintText: "Enter amount",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               
@@ -429,7 +428,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                             textAlign: TextAlign.center,
                                              style: const TextStyle(color: Colors.black),
                                             decoration: const InputDecoration(
-                                              hintText: "Entre number",
+                                              hintText: "Enter number",
                                               hintStyle: TextStyle(color: Colors.black)
                                             ),
               

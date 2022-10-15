@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/helper/coin_model.dart';
+import 'package:jadeais/mls/botmodel.dart';
 import 'package:jadeais/screens/gudie.dart';
 import 'package:jadeais/screens/robot%20details/robot_screen.dart';
 import 'package:jadeais/screens/support.dart';
@@ -204,10 +205,15 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             width: width * 0.02,
                           ),
-                          const Text(
-                            "Number of robots at work",
-                            style: TextStyle(color: Colors.white),
-                          )
+                          FutureBuilder<List<Bot>>(
+        future: fireBase.allmyactivebot(),
+    builder: (context, snap) {
+      return  Text(
+        "Number of robots at work ${snap.data!.length.toString()}",
+        style: TextStyle(color: Colors.white),
+      );
+    }),
+
                         ],
                       ),
                     ),
@@ -236,28 +242,7 @@ class _HomePageState extends State<HomePage> {
                               builder: (context, snap) {
                                 return snap.hasData?Row(
                                   children: [
-                                     Text(
-                                      "${snap.data}",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                    SizedBox(
-                                      width: width * 0.01,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: height * .007),
-                                      child: const Text(
-                                        "USDT=",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(255, 126, 122, 122),
-                                            fontSize: 13),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: width * 0.01,
-                                    ),
+
                                     Text(
                                       "${snap.data}",
                                       style: TextStyle(

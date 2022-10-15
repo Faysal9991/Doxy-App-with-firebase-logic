@@ -152,12 +152,12 @@
                 {
                     "source": "/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/res/values/styles.xml",
                     "from": {
-                        "startLines": "3,14",
+                        "startLines": "3,13",
                         "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
+                        "startOffsets": "173,817",
+                        "endLines": "7,15",
                         "endColumns": "12,12",
-                        "endOffsets": "476,982"
+                        "endOffsets": "476,981"
                     },
                     "to": {
                         "startLines": "163,168",

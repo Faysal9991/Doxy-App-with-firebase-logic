@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sifat.jadeais">
-   <application
-        android:label="Doxi"
-        android:name="${Doxi}"
+    <application
+        android:label="jadeais"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

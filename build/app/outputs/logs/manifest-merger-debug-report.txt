@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:3:4-44:19
+INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:3:5-41:19
 MERGED from [:firebase_auth] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_auth] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
 MERGED from [:cloud_firestore] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
@@ -58,11 +58,11 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/macb
 	android:name
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
-MERGED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
+ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
+INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
+MERGED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
 MERGED from [:firebase_auth] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
 MERGED from [:cloud_firestore] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
@@ -128,11 +128,11 @@ INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-maste
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:1-42:12
 		INJECTED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/android/app/src/main/AndroidManifest.xml:1:11-69
