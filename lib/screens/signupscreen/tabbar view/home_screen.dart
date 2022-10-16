@@ -32,9 +32,14 @@ class _HomePageState extends State<HomePage> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-      child:SliderView()
+      drawer: Container(
+        width: 210,
+
+        child: Drawer(
+
+        child:SliderView()
     ),
+      ),
       backgroundColor: const Color(0xffE5E5E5),
       appBar:AppBar(
         backgroundColor: Colors.white,
@@ -208,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                           FutureBuilder<List<Bot>>(
         future: fireBase.allmyactivebot(),
     builder: (context, snap) {
-      return  Text(
+      return  snap.data==null?Text("loading",style: TextStyle(color: Colors.white),):Text(
         "Number of robots at work ${snap.data!.length.toString()}",
         style: TextStyle(color: Colors.white),
       );

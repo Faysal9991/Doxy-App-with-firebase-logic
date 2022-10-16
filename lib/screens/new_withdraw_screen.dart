@@ -120,7 +120,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   ElevatedButton(onPressed: ()async{
                     await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
-
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
                   }, child: const Text("Submit"))
                   
                               ],
@@ -228,7 +228,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
              
           
              
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: ()async{
+                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),
@@ -335,7 +339,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
           SizedBox(height: height*0.03,),
           
           
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: ()async{
+                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),
@@ -439,7 +447,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 )
                   ,
             
-                  ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+                  ElevatedButton(onPressed: ()async{
+                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+
+                  }, child: const Text("Submit"))
                   
                               ],
                             ),

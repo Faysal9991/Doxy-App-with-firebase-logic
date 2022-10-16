@@ -1,4 +1,4 @@
-#Sat Oct 15 11:32:49 BDT 2022
+#Mon Oct 17 02:40:23 BDT 2022
 base.2=/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
 path.2=classes3.dex
 base.1=/Users/macbookair/Documents/jadeai with logic/jade-ai-master-master/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex

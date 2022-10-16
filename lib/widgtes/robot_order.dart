@@ -32,110 +32,120 @@ class RobotOrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height * 0.4,
-      width: width * 0.95,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-                left: width * 0.03, right: width * 0.03, top: height * 0.02),
-            child: Row(
-              children: [
-                Text(
-                  robotNumber,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: offRobot,
-                  child: const Text(
-                    "নিষ্ক্রিয়",
-                    style: TextStyle(fontSize: 16, color: Colors.teal),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: width * 0.95,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.white10,
+                Colors.white,
+              ],
+            ), borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          children: [
+
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: width * 0.05),
+              child: Row( mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    robotNumber,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                )
-              ],
+
+
+                  SvgPicture.asset(
+                    "assets/robot.svg",
+                  ),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "robotEstimatedDai\nlyIncome:\n$nlyIncome",
+                        style:
+                            const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                      ),
+                        SizedBox(
+              height: height * 0.001,
             ),
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: width * 0.05),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  "assets/robot.svg",
-                ),
-                SizedBox(
-                  width: width * 0.02,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "robotEstimatedDai\nlyIncome:\n$nlyIncome",
-                      style:
-                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                    ),
-                      SizedBox(
-            height: height * 0.001,
-          ),
-                    Text(
-                      "দাম: $robotPrice",
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Color.fromARGB(255, 203, 196, 196),
-                      ),
-                    ),  SizedBox(
-            height: height * 0.001,
-          ),
-                    Text(
-                      "আমানত শুরুঃ $robotDate",
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color:  Color.fromARGB(255, 203, 196, 196),
-                      ),
-                    ),
-                      SizedBox(
-            height: height * 0.001,
-          ),
-                    Text(
-                      "বাকি দিনের সংখ্যা:-$robotLastDate আকাশ",
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Color.fromARGB(255, 203, 196, 196),
-                      ),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Text(todaytimeDate,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color:  Color.fromARGB(255, 203, 196, 196),
-                      )),
-                )
-              ],
+                      Text(
+                        "Price: $robotPrice",
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 203, 196, 196),
+                        ),
+                      ),  SizedBox(
+              height: height * 0.001,
             ),
-          ),
-          SizedBox(height: height*0.015),
-          Container(
-            height: height * 0.04,
-            width: width * 0.9,
-            decoration: BoxDecoration(
-                color: const Color(0xffE5E5E5),
-                borderRadius: BorderRadius.circular(6)),
-            child: Center(child: Text("রোবট অর্ডার নম্বরঃ $robotBorderNumber")),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: width * 0.6),
-            child: ElevatedButton(onPressed: onRobot, child: const Text("সক্রিয়করণ")),
-          )
-        ],
+                      Text(
+                        "Starting Date $robotDate",
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color:  Color.fromARGB(255, 203, 196, 196),
+                        ),
+                      ),
+                        SizedBox(
+              height: height * 0.001,
+            ),
+                      Text(
+                        "Expired date:-$robotLastDate",
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 203, 196, 196),
+                        ),
+                      )
+                    ],
+                  ),
+
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(todaytimeDate,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color:  Color.fromARGB(255, 203, 196, 196),
+                            )),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red
+                          ),
+                            onPressed: offRobot, child: const Text("Deactive")),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green
+                            ),
+                            onPressed: onRobot, child: const Text("Working")),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            SizedBox(height: height*0.015),
+            Container(
+              height: height * 0.04,
+              width: width * 0.9,
+              decoration: BoxDecoration(
+                  color: Colors.teal,
+                  borderRadius: BorderRadius.circular(6)),
+              child: Center(child: Text("Robot order number $robotBorderNumber",style: TextStyle(color: Colors.white),)),
+            ),
+ SizedBox(height: 5,)
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -246,9 +247,9 @@ class _UserScreenState extends State<UserScreen> {
                               FutureBuilder<List<Bot>>(
                                   future: fireBase.allmyactivebot(),
           builder: (context, snap) {
-          return  Text(
-          "Number of robots at work ${snap.data!.length.toString()}",
-          style: TextStyle(color: Colors.black),
+          return snap.data!.length==null?CupertinoActivityIndicator(): Text(
+            "Number of robots at work ${snap.data!.length.toString()}",
+            style: TextStyle(color: Colors.black),
           );
           }),
 

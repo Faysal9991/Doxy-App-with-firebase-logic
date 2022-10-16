@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
@@ -14,72 +15,83 @@ class SliderView extends StatelessWidget {
   FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:  Color.fromARGB(255, 204, 204, 204),
-      body: StreamBuilder<Profile>(
-        stream: fireBase.myProfileStream(),
-        builder: (context, snap) {
-          return snap.hasData?SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                const CircleAvatar(
-                  radius: 65,
-                  backgroundColor: Colors.grey,
-                  child: CircleAvatar(
-                    radius: 60,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor:  Colors.white,
+        body: StreamBuilder<Profile>(
+          stream: fireBase.myProfileStream(),
+          builder: (context, snap) {
+            return snap.hasData?SingleChildScrollView(
+              child: Padding(
+                padding:  const EdgeInsets.only(left: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     const SizedBox(
+                      height: 10,
+                    ),
+                      Padding(
+                       padding: EdgeInsets.only(left: 35),
+                       child: CircleAvatar(
+                         radius: 40,
+                        child: SvgPicture.asset("assets/user-solid.svg",color: Colors.white,
+                        ),
 
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  '${snap.data!.username}',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      fontFamily: 'BalsamiqSans'),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                _SliderMenuItem(
-                    title: 'Funding records', iconData: Icons.home, onTap: onItemClick),
-                _SliderMenuItem(
-                    title: 'Notification',
-                    iconData: FontAwesomeIcons.bell,
-                    onTap: onItemClick),
-                _SliderMenuItem(
-                    title: 'Withdrawl method',
-                    iconData: FontAwesomeIcons.moneyBill,
-                    onTap: onItemClick),
-                _SliderMenuItem(
-                    title: 'Security', iconData:FontAwesomeIcons.shield, onTap: onItemClick),
-                _SliderMenuItem(
-                    title: 'Feedback', iconData: FontAwesomeIcons.question, onTap: onItemClick),
+                        backgroundColor: Colors.grey,
+                        
+                    ),
+                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35),
+                      child: Text(
+                        '${snap.data!.username}',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            fontFamily: 'BalsamiqSans'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     _SliderMenuItem(
-                    title: 'Support', iconData: FontAwesomeIcons.headphones, onTap: onItemClick),
-                      _SliderMenuItem(
-                    title: 'Settings', iconData: FontAwesomeIcons.gear, onTap: onItemClick),
-                GestureDetector(
-                  onTap: ()async{
-                    await auth.signOut();
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>LoginPage()), (route) => false);
-                  },
-                  child: _SliderMenuItem(
-                      title: 'LogOut',
-                      iconData: Icons.arrow_back_ios,
-                      onTap: onItemClick,),
-                )
-              ],
-            ),
-          ):Center(child: CircularProgressIndicator(),);
-        }
+                        title: 'Funding records', iconData: Icons.home, onTap: onItemClick),
+                    _SliderMenuItem(
+                        title: 'Notification',
+                        iconData: FontAwesomeIcons.bell,
+                        onTap: onItemClick),
+                    _SliderMenuItem(
+                        title: 'Withdrawl method',
+                        iconData: FontAwesomeIcons.moneyBill,
+                        onTap: onItemClick),
+                    _SliderMenuItem(
+                        title: 'Security', iconData:FontAwesomeIcons.shield, onTap: onItemClick),
+                    _SliderMenuItem(
+                        title: 'Feedback', iconData: FontAwesomeIcons.question, onTap: onItemClick),
+                        _SliderMenuItem(
+                        title: 'Support', iconData: FontAwesomeIcons.headphones, onTap: onItemClick),
+                          _SliderMenuItem(
+                        title: 'Settings', iconData: FontAwesomeIcons.gear, onTap: onItemClick),
+                    GestureDetector(
+                      onTap: ()async{
+                        await auth.signOut();
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>LoginPage()), (route) => false);
+                      },
+                      child: _SliderMenuItem(
+                          title: 'LogOut',
+                          iconData: Icons.arrow_back_ios,
+                          onTap: onItemClick,),
+                    )
+                  ],
+                ),
+              ),
+            ):const Center(child: CircularProgressIndicator(),);
+          }
+        ),
       ),
     );
   }
