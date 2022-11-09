@@ -6,7 +6,7 @@ import 'package:jadeais/screens/signupscreen/signuppage.dart';
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
-  @override
+  @overridq
   State<LoginPage> createState() => _LoginPageState();
 }
 
