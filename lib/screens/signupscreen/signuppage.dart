@@ -1,10 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/new%20code/newnevigation.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
-import 'package:jadeais/screens/signupscreen/tabbar%20view/nevegation_screen.dart';
 
-import '../../widgtes/phonenumberpicker.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -15,11 +14,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   ValueNotifier<String> phone = ValueNotifier("");
-
   ValueNotifier<String> password = ValueNotifier("");
-  TextEditingController p = TextEditingController();
-  TextEditingController pw = TextEditingController();
-  TextEditingController repetPassowrd = TextEditingController();
+
+  TextEditingController email = TextEditingController();
+  TextEditingController userName = TextEditingController();
+  TextEditingController userPassword = TextEditingController();
   TextEditingController rafer = TextEditingController();
   FireBase fireBase = FireBase();
   @override
@@ -58,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: TextField(
                     keyboardType: TextInputType.visiblePassword,
 
-                    controller: p,
+                    controller: email,
                     decoration:  InputDecoration(
                         //labelText: "পাসওয়ার্ড লিখুন",
                         hintText: "enter gmail",
@@ -72,10 +71,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
                 SizedBox(height: height*0.02,),
-                const Text("পাসওয়ার্ড লিখুন",style: TextStyle(color: Color(0xffA5A3A3)),),
+                const Text("Enter User name",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 Container(
-                  height: height*0.07,
+                  height: height*0.05,
 
                   decoration: BoxDecoration(
                       color: const Color(0xffF6F6F6),
@@ -83,23 +82,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   child: TextField(
 
-                    controller: pw,
+                    controller: userName,
                     decoration: InputDecoration(
-                      hintText: "Password",
+                      hintText: "Username",
                         //labelText: "পাসওয়ার্ড লিখুন",
                         contentPadding: EdgeInsets.all(20.0),
                         border: InputBorder.none,
-                        suffixIcon: IconButton(onPressed: (){},
-                            icon: Icon(Icons.remove_red_eye)
-                        )
                     ),
                   ),
                 ),
                  SizedBox(height: height*0.02,),
-                const Text("Repeat password",style: TextStyle(color: Color(0xffA5A3A3)),),
+                const Text("Enter password",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 Container(
-                  height: height*0.07,
+                  height: height*0.05,
 
                   decoration: BoxDecoration(
                       color: const Color(0xffF6F6F6),
@@ -107,21 +103,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   child: TextField(
 
-                    controller: repetPassowrd,
+                    controller: userPassword,
                     decoration: InputDecoration(
                       hintText: "Repeat password",
                         //labelText: "পাসওয়ার্ড লিখুন",
                         contentPadding: EdgeInsets.all(20.0),
                         border: InputBorder.none,
-                        suffixIcon: IconButton(onPressed: (){},
-                            icon: Icon(Icons.remove_red_eye)
-                        )
                     ),
                   ),
                 ),
 
-
-
+                SizedBox(height: height*0.02,),
+                const Text("Enter rafer code",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 Container(
                   height: height*0.05,
@@ -143,38 +136,21 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                     width: width,
                     child: ElevatedButton(onPressed: ()async{
-                      if (pw.text==repetPassowrd.text){
-                                  await fireBase.signUp(p.text.trim(), pw.text.trim());
-                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>NavegationBar()), (route) => false);
-                      }else{
-                          var snackBar = SnackBar(
-                                                  elevation: 0,
-                                                  behavior: SnackBarBehavior.floating,
-                                                  backgroundColor: Colors.transparent,
-                                                  content: AwesomeSnackbarContent(
-                                                    title: 'oops!',
-                                                    message:
-                                                    'Password don\'t match',
-                                                    contentType: ContentType.failure,
-                                                  ),
-                                                );
 
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(snackBar);
-                      }
-                      //print(phone.value);
+                                  await fireBase.signUp(email.text.trim(), userPassword.text.trim(),userName.text.trim());
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>NevigationScreen()), (route) => false);
 
-                    }, child: const Text("প্রবেশ করুন"))),
+                    }, child: const Text("Sign up"))),
                 SizedBox(height: height*0.02,),
                 Row(
                   children: [
-                    const Text("একাউন্ট আছে ?",style: TextStyle(color: Color(0xffA5A3A3)),),
+                    const Text("Do you have account?",style: TextStyle(color: Color(0xffA5A3A3)),),
                     const Spacer(),
                     InkWell(
                         onTap: (){
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginPage()));
                         },
-                        child: const Text("লগ ইন করুন!",style: TextStyle(color: Colors.teal),))
+                        child: const Text("sign in",style: TextStyle(color: Colors.teal),))
                   ],
                 )
               ],

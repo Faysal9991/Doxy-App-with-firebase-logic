@@ -20,6 +20,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "bottom_navy_bar",
+      "rootUri": "file:///Users/macbookair/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/bottom_navy_bar-6.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/macbookair/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.1",
       "packageUri": "lib/",
@@ -470,7 +476,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-10-08T13:19:02.621830Z",
+  "generated": "2022-11-03T06:56:35.480313Z",
   "generator": "pub",
   "generatorVersion": "2.18.1"
 }

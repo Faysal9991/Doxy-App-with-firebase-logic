@@ -1,4 +1,4 @@
-package com.sifat.jadeais
+package com.murd.doxi
 
 import io.flutter.embedding.android.FlutterActivity
 

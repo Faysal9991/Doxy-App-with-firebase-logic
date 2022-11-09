@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jadeais/utils/color_plate.dart';
 
 import '../../../widgtes/slider_view.dart';
 
@@ -18,41 +19,21 @@ class DolScreen extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return  Scaffold(
-     drawer: Drawer(
-      child:SliderView()
-    ),
-      backgroundColor: const Color(0xffE5E5E5),
-      appBar:AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon:CircleAvatar(
-             radius: 14,
-             backgroundColor: const Color.fromARGB(255, 91, 95, 97),
-             child:  Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: SvgPicture.asset("assets/user-solid.svg",color: Colors.white,),
-             )),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        
-        
-        actions: [
-         IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.bell,color: Colors.black,))
-         ],),
+      backgroundColor: Platte.background,
+
          body: Padding(
            padding: const EdgeInsets.all(8.0),
            child: Column(
             children: [
+              SizedBox(height: height*0.02,),
               Number4PageWidget(height: height, width: width),
-              SizedBox(height: height*0.01,),
+              SizedBox(height: height*0.02,),
               Number4PageSecondContainer(height: height, width: width),
-               SizedBox(height: height*0.01,),
+               SizedBox(height: height*0.02,),
               Container(
                 height: height*0.24,
                 width: width,
-                  decoration: BoxDecoration( color: Colors.white,
+                  decoration: BoxDecoration( color: Platte.hotPink,
       borderRadius: BorderRadius.circular(8)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -172,7 +153,7 @@ class Number4PageSecondContainer extends StatelessWidget {
     return Container(
       height:height*0.2 ,
       width: width,
-      decoration: BoxDecoration( color: Colors.white,
+      decoration: BoxDecoration( color: Platte.hotPink,
       borderRadius: BorderRadius.circular(8)
     ),
     child: Column(
@@ -189,7 +170,7 @@ class Number4PageSecondContainer extends StatelessWidget {
           children: [
             Text("Invite Code",  style: GoogleFonts.lato(color:Colors.black26,fontSize: 13)),
             SizedBox(width: width*0.35,),
-            Text("1122345",  style: GoogleFonts.lato(color:Colors.black,fontSize: 13)),
+            Text("1122345",  style: GoogleFonts.lato(color:Colors.white,fontSize: 13)),
             SizedBox(width: width*0.02,),
             GestureDetector(
               onTap: (){
@@ -197,7 +178,7 @@ class Number4PageSecondContainer extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("1122345 copied to clipboard")));
                 });
               },
-                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14)))
+                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14,fontWeight: FontWeight.bold)))
           ],
         ),
       ),
@@ -215,7 +196,7 @@ class Number4PageSecondContainer extends StatelessWidget {
             Text("Invite Code",  style: GoogleFonts.lato(color:Colors.black26,fontSize: 13)),
             SizedBox(width: width*0.05,),
             SizedBox(width: width*0.31,
-              child: Text("http//:www.cbcubuib.com",  style: GoogleFonts.lato(color:Colors.black,fontSize: 13))),
+              child: Text("http//:www.cbcubuib.com",  style: GoogleFonts.lato(color:Colors.white,fontSize: 13))),
             SizedBox(width: width*0.15,),
             GestureDetector(
               onTap: (){
@@ -223,7 +204,7 @@ class Number4PageSecondContainer extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("http//:www.cbcubuib.com copied to clipboard")));
                 });
               },
-                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14)))
+                child: Text("Copy",  style: GoogleFonts.lato(color:Colors.green,fontSize: 14,fontWeight: FontWeight.bold)))
           ],
         ),
       ),
@@ -232,7 +213,11 @@ class Number4PageSecondContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         width: width,
-        child: ElevatedButton(onPressed: (){}, child: Text("Invite friends"))),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Platte.primary
+          ),
+            onPressed: (){}, child: Text("Invite friends",style: GoogleFonts.lato(color: Colors.white),))),
     )
 
       ],

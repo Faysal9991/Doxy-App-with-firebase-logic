@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sifat.jadeais"
-    android:versionCode="1"
+    package="com.murd.doxi"
+    android:versionCode="3"
     android:versionName="1.0.0" >
 
     <uses-sdk
@@ -42,9 +42,9 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="jadeais" >
+        android:label="Doxi" >
         <activity
-            android:name="com.sifat.jadeais.MainActivity"
+            android:name="com.murd.doxi.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -157,13 +157,13 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.sifat.jadeais.firebaseinitprovider"
+            android:authorities="com.murd.doxi.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />
         <provider
             android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-            android:authorities="com.sifat.jadeais.lifecycle-process"
+            android:authorities="com.murd.doxi.lifecycle-process"
             android:exported="false"
             android:multiprocess="true" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
@@ -174,7 +174,7 @@
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-            android:authorities="com.sifat.jadeais.mobileadsinitprovider"
+            android:authorities="com.murd.doxi.mobileadsinitprovider"
             android:exported="false"
             android:initOrder="100" />
 
@@ -194,7 +194,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.sifat.jadeais.androidx-startup"
+            android:authorities="com.murd.doxi.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"

@@ -27,316 +27,293 @@ class _UserScreenState extends State<UserScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(child: SliderView()),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: CircleAvatar(
-                radius: 14,
-                backgroundColor: const Color.fromARGB(255, 91, 95, 97),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(
-                    "assets/user-solid.svg",
-                    color: Colors.white,
-                  ),
-                )),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                FontAwesomeIcons.bell,
-                color: Colors.black,
-              ))
-        ],
-      ),
+
       backgroundColor: const Color.fromARGB(255, 232, 232, 232),
       body: StreamBuilder<Profile>(
         stream: fireBase.myProfileStream(),
         builder: (context,snap) {
-          return snap.hasData?Column(
-            children: [
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Container(
-                width: width,
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: width * 0.05, top: height * 0.015),
-                      child: Container(
-                        height: height * 0.03,
-                        width: width * 0.3,
-                        child: Row(
-                          children: [
-                            Text(
-                              "Total assets",
-                              style: GoogleFonts.lato(
-                                  color: Colors.black45, fontSize: 14),
-                            ),
-                            SizedBox(
-                              width: width * 0.01,
-                            ),
-                            Icon(
-                              FontAwesomeIcons.eye,
-                              size: width * 0.04,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: width * 0.35,
-                      ),
-                      child: FutureBuilder<double>(
-                        future: fireBase.totalAssets(),
-                        builder: (context, sd) {
-                          return sd.hasData?Row(
+          return snap.data==null?Center(child: CircularProgressIndicator(),):SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Container(
+                  width: width,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                        EdgeInsets.only(left: width * 0.05, top: height * 0.015),
+                        child: Container(
+                          height: height * 0.03,
+                          width: width * 0.3,
+                          child: Row(
                             children: [
                               Text(
-                                "${sd.data!}",
+                                "Total assets",
                                 style: GoogleFonts.lato(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: width * 0.01,
-                              ),
-                              Text(
-                                "BDT",
-                                style: GoogleFonts.lato(
-                                    color: Colors.black45,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    color: Colors.black45, fontSize: 14),
                               ),
                               SizedBox(
                                 width: width * 0.01,
                               ),
                               Icon(
-                                FontAwesomeIcons.angleDown,
+                                FontAwesomeIcons.eye,
                                 size: width * 0.04,
                               )
-                            ],
-                          ):Center(child: CircularProgressIndicator(),);
-                        }
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.04,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: width * 0.24,
-                      ),
-                      child: FutureBuilder<double>(
-                        future: fireBase.todaytotalincomefrombots(),
-                        builder: (context, d) {
-                          return d.hasData?Row(
-
-                            children: [
-                              Text(
-                                "Taday's earning's",
-                                style: GoogleFonts.lato(
-                                    color: Colors.black45,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "${d.data}",
-                                style:
-                                    GoogleFonts.lato(color: Colors.black, fontSize: 14),
-                              ),
-                              SizedBox(
-                                width: width * 0.01,
-                              ),
-                              Text(
-                                "+36.56%",
-                                style: GoogleFonts.lato(
-                                    color: Colors.greenAccent, fontSize: 14),
-                              ),
-                            ],
-                          ):Center(child: CircularProgressIndicator(),);
-                        }
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: height * 0.02, left: width * 0.1),
-                      child: FutureBuilder<double>(
-                         future: fireBase.todaytotalincomefrombots(),
-                        builder: (context, d) {
-                          return Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              profileEarnig(
-                                  height: height,
-                                  days: "7 Days",
-                                  money: "${d.data!*7} BDT",
-                                  parcent: "+42%"),
-                              SizedBox(
-                                width: width * 0.09,
-                              ),
-                              profileEarnig(
-                                  height: height,
-                                  days: "30 Days",
-                                  money: "${d.data!*30} BDT",
-                                  parcent: "+92%"),
-                              SizedBox(
-                                width: width * 0.09,
-                              ),
-                              profileEarnig(
-                                  height: height,
-                                  days: "All",
-                                  money: "${d.data!*60} BDT",
-                                  parcent: "+432%"),
-                              SizedBox(width: width*0.1,)
-                            ],
-                          );
-                        }
-                      ),
-                    ),
-                    SizedBox(height: height*0.01,)
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Container(
-                height: height * 0.54,
-                width: width,
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: width * 0.02, top: height * 0.01),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => RobotDetails(myProfile: snap.data!,)));
-                        },
-                        child: Container(
-                          height: height * 0.05,
-                          width: width * 0.94,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 226, 225, 225),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.02,
-                              ),
-                              const Icon(
-                                FontAwesomeIcons.robot,
-                                size: 13,
-                                color: Colors.black,
-                              ),
-                              SizedBox(
-                                width: width * 0.02,
-                              ),
-                              FutureBuilder<List<Bot>>(
-                                  future: fireBase.allmyactivebot(),
-          builder: (context, snap) {
-          return snap.data!.length==null?CupertinoActivityIndicator(): Text(
-            "Number of robots at work ${snap.data!.length.toString()}",
-            style: TextStyle(color: Colors.black),
-          );
-          }),
-
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: width * 0.04, top: height * 0.01),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                              width: width * 0.43,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.teal),
-                                  onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RechargeScreen()));
-                                  },
-                                  child: Text("Recharge"))),
-                          SizedBox(
-                            width: width * 0.02,
-                          ),
-                          SizedBox(
-                              width: width * 0.43,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.greenAccent),
-                                  onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WithdrawScreen()));
-                                  },
-                                  child: Text("Withdraw")))
-                        ],
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: width * 0.35,
+                        ),
+                        child: FutureBuilder<double>(
+                            future: fireBase.totalAssets(),
+                            builder: (context, sd) {
+                              return sd.hasData?Row(
+                                children: [
+                                  Text(
+                                    "${sd.data!}",
+                                    style: GoogleFonts.lato(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  Text(
+                                    "BDT",
+                                    style: GoogleFonts.lato(
+                                        color: Colors.black45,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  Icon(
+                                    FontAwesomeIcons.angleDown,
+                                    size: width * 0.04,
+                                  )
+                                ],
+                              ):Center(child: CircularProgressIndicator(),);
+                            }
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: width * 0.02, top: height * 0.01),
-                      child: Text(
-                        "Icome Details",
-                        style: GoogleFonts.lato(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: height * 0.04,
                       ),
-                    ),
-                     SizedBox(height: height*.02,),
-                    FutureBuilder<double>(
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: width * 0.24,
+                        ),
+                        child: FutureBuilder<double>(
+                            future: fireBase.todaytotalincomefrombots(),
+                            builder: (context, d) {
+                              return d.hasData?Row(
 
-                        future: fireBase.todaytotalincomefrombots(),
-                      builder: (context, d) {
-                        return Belowlist(
+                                children: [
+                                  Text(
+                                    "Taday's earning's",
+                                    style: GoogleFonts.lato(
+                                        color: Colors.black45,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "${d.data}",
+                                    style:
+                                    GoogleFonts.lato(color: Colors.black, fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  Text(
+                                    "+36.56%",
+                                    style: GoogleFonts.lato(
+                                        color: Colors.greenAccent, fontSize: 14),
+                                  ),
+                                ],
+                              ):Center(child: CupertinoActivityIndicator(),);
+                            }
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.1),
+                        child: FutureBuilder<double>(
+                            future: fireBase.todaytotalincomefrombots(),
+                            builder: (context, d) {
+                               return d.hasData?Row(mainAxisAlignment: MainAxisAlignment.center,
+                                 children: [
+                                   profileEarnig(
+                                       height: height,
+                                       days: "7 Days",
+                                       money: "${d.data!*7} BDT",
+                                       parcent: "+42%"),
+                                   SizedBox(
+                                     width: width * 0.09,
+                                   ),
+                                   profileEarnig(
+                                       height: height,
+                                       days: "30 Days",
+                                       money: "${d.data!*30} BDT",
+                                       parcent: "+92%"),
+                                   SizedBox(
+                                     width: width * 0.09,
+                                   ),
+                                   profileEarnig(
+                                       height: height,
+                                       days: "All",
+                                       money: "${d.data!*60} BDT",
+                                       parcent: "+432%"),
+                                   SizedBox(width: width*0.1,)
+                                 ],
+                               ):CupertinoActivityIndicator();
+                            }
+                        ),
+                      ),
+                      SizedBox(height: height*0.01,)
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Container(
+                  height: height * 0.54,
+                  width: width,
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                        EdgeInsets.only(left: width * 0.02, top: height * 0.01),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => RobotDetails(myProfile: snap.data!,)));
+                          },
+                          child: Container(
+                            height: height * 0.05,
+                            width: width * 0.94,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 226, 225, 225),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: width * 0.02,
+                                ),
+                                const Icon(
+                                  FontAwesomeIcons.robot,
+                                  size: 13,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  width: width * 0.02,
+                                ),
+                                FutureBuilder<List<Bot>>(
+                                    future: fireBase.allmyactivebot(),
+                                    builder: (context, snap) {
+                                      return snap.data==null?CupertinoActivityIndicator(): Text(
+                                        "Number of robots at work ${snap.data!.length.toString()}",
+                                        style: TextStyle(color: Colors.black),
+                                      );
+                                    }),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                        EdgeInsets.only(left: width * 0.04, top: height * 0.01),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                width: width * 0.43,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.teal),
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RechargeScreen()));
+                                    },
+                                    child: Text("Recharge"))),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            SizedBox(
+                                width: width * 0.43,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.greenAccent),
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WithdrawScreen()));
+                                    },
+                                    child: Text("Withdraw")))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                        EdgeInsets.only(left: width * 0.02, top: height * 0.01),
+                        child: Text(
+                          "Icome Details",
+                          style: GoogleFonts.lato(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: height*.02,),
+                      FutureBuilder<double>(
+
+                          future: fireBase.todaytotalincomefrombots(),
+                          builder: (context, d) {
+
+                            return d.data==null?CircularProgressIndicator():Belowlist(
+                                h: height,
+                                w: width,
+                                iconname: FontAwesomeIcons.sackDollar,
+                                iconDetais: "Robot income total",
+                                blance: "${d.data} BDT");
+                          }
+                      ),
+                      SizedBox(height: height*.02,),
+                      Belowlist(
                           h: height,
                           w: width,
-                          iconname: FontAwesomeIcons.sackDollar,
-                          iconDetais: "Robot income total",
-                          blance: "${d.data} BDT");
-                      }
-                    ),
+                          iconname: FontAwesomeIcons.flask,
+                          iconDetais: "Cumulstive robot\n income",
+                          blance: "000 BDT"),
                       SizedBox(height: height*.02,),
-                       Belowlist(
-                      h: height,
-                      w: width,
-                      iconname: FontAwesomeIcons.flask,
-                      iconDetais: "Cumulstive robot\n income",
-                      blance: "000 BDT"),
-                       SizedBox(height: height*.02,),
-                       Belowlist(
-                      h: height,
-                      w: width,
-                      iconname: FontAwesomeIcons.magnifyingGlassDollar,
-                      iconDetais: "yestarday's agent\n income",
-                      blance: "000 BDT"),
-                       SizedBox(height: height*.02,),
-                       Belowlist(
-                      h: height,
-                      w: width,
-                      iconname: FontAwesomeIcons.magnifyingGlassChart,
-                      iconDetais: "Accumulative agent\n income",
-                      blance: "000 BDT"),
-                  ],
-                ),
-              )
-            ],
-          ):Center(child: CircularProgressIndicator(),);
+                      Belowlist(
+                          h: height,
+                          w: width,
+                          iconname: FontAwesomeIcons.magnifyingGlassDollar,
+                          iconDetais: "yestarday's agent\n income",
+                          blance: "000 BDT"),
+                      SizedBox(height: height*.02,),
+                      Belowlist(
+                          h: height,
+                          w: width,
+                          iconname: FontAwesomeIcons.magnifyingGlassChart,
+                          iconDetais: "Accumulative agent\n income",
+                          blance: "000 BDT"),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
         }
       ),
     );

@@ -3,11 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:jadeais/new%20code/newnevigation.dart';
 import 'package:jadeais/screens/loginscreen/loginpage.dart';
-
-
 import 'firebase_options.dart';
-import 'screens/signupscreen/tabbar view/nevegation_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,13 +29,12 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      //home: const NavegationBar(),
       home: StreamBuilder(
           stream: auth.authStateChanges(),
           builder: (context, snapshot) {
             if(snapshot.connectionState==ConnectionState.active){
               if(snapshot.hasData){
-                return NavegationBar();
+                return NevigationScreen();
               }
             }
             if(snapshot.connectionState==ConnectionState.waiting){

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jadeais/utils/color_plate.dart';
 
 class HelpWidget extends StatelessWidget {
   const HelpWidget({
@@ -25,7 +26,7 @@ class HelpWidget extends StatelessWidget {
           SizedBox(
             height: height*0.05,
             width: width*0.12,
-            child: SvgPicture.asset(svgname,color: Colors.green,fit: BoxFit.cover,)),
+            child: SvgPicture.asset(svgname,color: Platte.primary,fit: BoxFit.cover,)),
           Text(
             iconName,
             style: GoogleFonts.lato(

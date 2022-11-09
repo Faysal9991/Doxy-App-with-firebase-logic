@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jadeais/helper/authhelper.dart';
+import 'package:jadeais/new%20code/newnevigation.dart';
 import 'package:jadeais/screens/signupscreen/signuppage.dart';
-
-import '../../widgtes/phonenumberpicker.dart';
-import '../signupscreen/tabbar view/nevegation_screen.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -18,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController p = TextEditingController();
   TextEditingController pw = TextEditingController();
   FireBase fireBase = FireBase();
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -91,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Entre password",style: TextStyle(color: Color(0xffA5A3A3)),),
                 SizedBox(height: height*0.02,),
                 Container(
-                  height: height*0.07,
+                  height: height*0.05,
 
                   decoration: BoxDecoration(
                       color: const Color(0xffF6F6F6),
@@ -117,11 +116,15 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: height*0.02,),
                 SizedBox(
                     width: width,
-                    child: ElevatedButton(onPressed: ()async{
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepOrange
+                      ),
+                        onPressed: ()async{
                       print(p.text.trim());
                       await fireBase.signIn(p.text.trim(), pw.text.trim());
-                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const NavegationBar()), (route) => false);
-                    }, child: const Text("প্রবেশ করুন"))),
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const NevigationScreen()), (route) => false);
+                    }, child: const Text("Sign in"))),
                 SizedBox(height: height*0.02,),
                 Row(
                   children: [
@@ -131,8 +134,20 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: (){
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const SignUpPage()));
                         },
-                        child: const Text("Open an new account",style: TextStyle(color: Colors.teal),))
+                        child: const Text("Open an new account",style: TextStyle(color: Colors.deepOrange),))
                   ],
+                ),
+                Center(
+                  child: SizedBox(
+                    height: 30,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orangeAccent
+                          ),
+                          onPressed: ()async{
+                            await fireBase.signIn("guest@gmail.com","992211");
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const NevigationScreen()), (route) => false);
+                          }, child: Text("Login as Gest"))),
                 )
               ],
             ),

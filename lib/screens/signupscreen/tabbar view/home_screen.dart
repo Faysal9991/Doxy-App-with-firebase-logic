@@ -9,6 +9,7 @@ import 'package:jadeais/mls/botmodel.dart';
 import 'package:jadeais/screens/gudie.dart';
 import 'package:jadeais/screens/robot%20details/robot_screen.dart';
 import 'package:jadeais/screens/support.dart';
+import 'package:jadeais/utils/color_plate.dart';
 import 'package:jadeais/widgtes/home_page_help_widget.dart';
 import '../../../mls/profilemodel.dart';
 import '../../../widgtes/coin_card.dart';
@@ -32,34 +33,9 @@ class _HomePageState extends State<HomePage> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Container(
-        width: 210,
 
-        child: Drawer(
+      backgroundColor: Platte.background,
 
-        child:SliderView()
-    ),
-      ),
-      backgroundColor: const Color(0xffE5E5E5),
-      appBar:AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon:CircleAvatar(
-             radius: 14,
-             backgroundColor: const Color.fromARGB(255, 91, 95, 97),
-             child:  Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: SvgPicture.asset("assets/user-solid.svg",color: Colors.white,),
-             )),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        
-        
-        actions: [
-         IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.bell,color: Colors.black,))
-         ],),
       body: SafeArea(
         child: StreamBuilder<Profile>(
           stream: fireBase.myProfileStream(),
@@ -70,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   SizedBox(
-                    height: height * 0.01,
+                    height: height * 0.02,
                   ),
                   Container(
                     height: height * 0.2,
@@ -79,8 +55,9 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(10),
                       gradient: const LinearGradient(
                           colors: [
-                            Color(0xff3293F5),
-                            Color(0xff51BFB3),
+                            Platte.primary,
+                            Platte.light,
+
                           ],
                           begin: FractionalOffset(0.0, 0.0),
                           end: FractionalOffset(1.0, 0.0),
@@ -97,12 +74,12 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               const Icon(
                                 FontAwesomeIcons.robot,
-                                color: Colors.teal,
+                                color: Platte.hotPink,
                                 size: 14,
                               ),
-                              SizedBox(width: width * 0.01),
+                              SizedBox(width:10),
                               const Text(
-                                "Jade Ai",
+                                "Doxi",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
@@ -118,18 +95,18 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "বন্ধুদের আমন্ত্রণ  জানান",
-                                  style:
-                                      TextStyle(color: Colors.white, fontSize: 18),
+                                 Text(
+                                  "Invite your friends",
+                                  style: GoogleFonts.lato(color: Colors.white, fontSize: 18),
                                 ),
                                 SizedBox(
                                   height: height * 0.016,
                                 ),
-                                const Text(
-                                  "দশ মিলিয়ন বেনাস পান",
+                                 Text(
+                                  "Get 10 million bonus",
                                   style:
-                                      TextStyle(color: Colors.white, fontSize: 14),
+                                      GoogleFonts.lato(
+                                          color: Colors.white, fontSize: 14),
                                 )
                               ],
                             ),
@@ -147,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.01,
+                    height: height * 0.02,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.43),
@@ -157,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                           height: height * 0.008,
                           width: width * 0.04,
                           decoration: BoxDecoration(
-                              color: Colors.teal,
+                              color: Platte.primary,
                               borderRadius: BorderRadius.circular(7)),
                         ),
                         SizedBox(
@@ -184,18 +161,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.01,
+                    height: height * 0.02,
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => RobotDetails(myProfile: snap.data!,)));
+                      if(snap.data!= null){
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => RobotDetails(myProfile: snap.data!,)));
+                      }else{
+                        CircularProgressIndicator();
+                      }
+
                     },
                     child: Container(
                       height: height * 0.05,
                       width: width * 0.94,
                       decoration: BoxDecoration(
-                          color: Colors.teal,
+                          color: Platte.primary,
                           borderRadius: BorderRadius.circular(5)),
                       child: Row(
                         children: [
@@ -224,22 +206,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.01,
+                    height: height * 0.02,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.03),
                     child: Container(
-                      height: height * 0.2,
+                      height: height * 0.1,
                       width: width,
-                      decoration: const BoxDecoration(color: Colors.white54),
+                      decoration:  BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(8)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "আজ আনুমানিক  আয়",
-                              style: TextStyle(
+                             Text(
+                              "Estimated income today",
+                              style: GoogleFonts.lato(
                                   color: Colors.black, fontWeight: FontWeight.bold),
                             ),
                             FutureBuilder<double>(
@@ -268,36 +250,17 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ],
-                                ):Center(child: CircularProgressIndicator(),);
+                                ):Center(child: CupertinoActivityIndicator(),);
                               }
                             ),
-                            Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: coinList.length,
-                              itemBuilder: (context, index) {
-                                if (coinList.isNotEmpty) {
-                                  return CoinCard(
-                                    height: height,
-                                    width: width,
-                                    name: coinList[index].name!,
-                                    symbol: coinList[index].symbol!,
-                                    imageUrl: coinList[index].imageUrl!,
-                                    price: coinList[index].price!.toDouble(),
-                                    change: coinList[index].change!.toDouble(),
-                                    changePercentage: coinList[index].changePercentage!.toDouble(),
-                                  );
-                                } else {
-                                  return Center(child: CupertinoActivityIndicator());
-                                }
-                              },
-                            ),
-                          )
+
                            ],
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: height * 0.01,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -305,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                       height: height * 0.2,
                       width: width,
                       decoration: BoxDecoration(
-                          color: Colors.teal,
+                          color: Platte.primary,
                           borderRadius: BorderRadius.circular(9)),
                       child: Row(
                         children: [
@@ -378,8 +341,8 @@ class _HomePageState extends State<HomePage> {
                                       begin: Alignment.topRight,
                                       end: Alignment.bottomLeft,
                                       colors: [
-                                        Colors.teal,
-                                        Colors.black,
+                                        Platte.primary,
+                                        Platte.light,
                                       ],
                                     ),
                                     borderRadius: BorderRadius.circular(2)),

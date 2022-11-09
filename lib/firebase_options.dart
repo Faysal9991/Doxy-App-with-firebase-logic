@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '897401434851',
     projectId: 'jadeais',
     storageBucket: 'jadeais.appspot.com',
-    iosClientId: '897401434851-2lrggjfrbqodmhpoh6uh3me2hpiijlvg.apps.googleusercontent.com',
-    iosBundleId: 'com.sifat.jadeais',
+    iosClientId:
+        '897401434851-2lrggjfrbqodmhpoh6uh3me2hpiijlvg.apps.googleusercontent.com',
+    iosBundleId: 'com.murd.doxi',
   );
 }

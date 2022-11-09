@@ -8,6 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/mls/botmodel.dart';
 import 'package:jadeais/mls/profilemodel.dart';
+import 'package:jadeais/utils/color_plate.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../widgtes/slider_view.dart';
@@ -50,32 +51,17 @@ class _BuyRobotState extends State<BuyRobot> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(child: SliderView()),
-      backgroundColor: const Color(0xffE5E5E5),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: CircleAvatar(
-                radius: 14,
-                backgroundColor: const Color.fromARGB(255, 91, 95, 97),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(
-                    "assets/user-solid.svg",
-                    color: Colors.white,
-                  ),
-                )),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
+        centerTitle: true,
+        backgroundColor: Platte.primary,
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                FontAwesomeIcons.bell,
-                color: Colors.black,
-              ))
+          SizedBox(width: 10,),
+
+          SizedBox(width: width*0.1,),
+          Center(child: Text("Doxi",style:GoogleFonts.lato(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),)),
+          const Spacer(),
+          IconButton(onPressed: (){},
+              icon: Icon(FontAwesomeIcons.bell))
         ],
       ),
       body: FutureBuilder<Profile>(
@@ -91,9 +77,9 @@ class _BuyRobotState extends State<BuyRobot> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        height: height * 0.18,
+
                         width: width * 8,
-                        decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(color: Platte.hotPink,borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
                             Padding(
@@ -130,165 +116,40 @@ class _BuyRobotState extends State<BuyRobot> {
                                 width: width * 0.9,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      showMaterialModalBottomSheet(
+                                      showDialog(
                                         context: context,
-                                        builder: (context) => Container(
-                                          height: height * 0.5,
-                                          width: width,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white30,
-                                              borderRadius: BorderRadius.circular(10)),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Center(
-                                                child: Text("Buy robot",
-                                                    style: GoogleFonts.lato(
-                                                        color: Colors.black,
-                                                        fontSize: 20,
-                                                        fontWeight: FontWeight.bold)),
+                                        builder: (ctx) => AlertDialog(
+                                          title:  Text("Do you Want to active robot"),
+
+                                          actions:[
+                                            ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.red
                                               ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: width * 0.02),
+                                              onPressed: () {
+                                                Navigator.of(ctx).pop();
+                                              },
+                                              child: const Text("Cancel"),
+                                            ),
+                                            ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor: Colors.green
+                                                ),
+                                                onPressed: () async{
+                                                  if(p.data!.totalMoney>=bot.price!){
+
+                                                    await fireBase.buyRobot(p.data!, bot);
+                                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Robot is activated")));
+                                                    Navigator.of(ctx).pop();
+                                                  }else{
+                                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Not enough money, recharge")));
+                                                    Navigator.of(ctx).pop();
+                                                  }
+                                                },
                                                 child: Text(
-                                                  "purchase price",
-                                                  style: GoogleFonts.lato(
-                                                      color: Colors.black38),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: width * 0.02),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      bot.price.toString(),
-                                                      style: GoogleFonts.lato(
-                                                          color: Colors.black,
-                                                          fontWeight: FontWeight.bold),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.01,
-                                                    ),
-                                                    Text(
-                                                      "USDT=",
-                                                      style: GoogleFonts.lato(
-                                                          color: const Color.fromARGB(
-                                                              255, 108, 107, 107)),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.01,
-                                                    ),
-                                                    Text(
-                                                      bot.price.toString(),
-                                                      style: GoogleFonts.lato(
-                                                          color: Colors.black,
-                                                          fontWeight: FontWeight.bold),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.01,
-                                                    ),
-                                                    Text("BDT",
-                                                        style: GoogleFonts.lato(
-                                                          color: const Color.fromARGB(
-                                                              255, 108, 107, 107),
-                                                        ))
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: width * 0.09),
-                                                child: RobotBuyDetails(
-                                                    width: width,
-                                                    height: height,
-                                                    robotPrice: bot.price.toString(),
-                                                    robotWorkingDays: bot.daily_add.toString(),
-                                                    startupDeposit: bot.daily_add.toString()),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: width * 0.02),
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          "Please enter the quantity to buy",
-                                                          style: GoogleFonts.lato(
-                                                              color: Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight.bold),
-                                                        ),
-                                                        IconButton(
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                buyRobotAmount++;
-                                                              });
-                                                            },
-                                                            icon: Icon(
-                                                                FontAwesomeIcons.plus)),
-                                                        Container(
-                                                          height: height * 0.03,
-                                                          width: width * 0.08,
-                                                          color: Colors.white,
-                                                          child: Center(
-                                                              child: Text(
-                                                                  "${buyRobotAmount}")),
-                                                        ),
-                                                        IconButton(
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                buyRobotAmount--;
-                                                              });
-                                                            },
-                                                            icon: Icon(FontAwesomeIcons
-                                                                .minus)),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Center(
-                                                child: ElevatedButton(
-                                                    onPressed: () async{
-                                                      if(p.data!.totalMoney>=bot.price!){
+                                                    "Confirm")),
 
-                                                        await fireBase.buyRobot(p.data!, bot);
-                                                      }else{
-                                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Not enough money, recharge")));
-                                                      }
-                                                      Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const BuyRobot()),
-                                                      );
-                                                      var snackBar = SnackBar(
-                                                        elevation: 0,
-                                                        behavior:
-                                                            SnackBarBehavior.floating,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        content: AwesomeSnackbarContent(
-                                                          title: 'Succesfully send!',
-                                                          message:
-                                                              'Thank you sir our team will response soon',
-                                                          contentType:
-                                                              ContentType.success,
-                                                        ),
-                                                      );
-
-                                                      ScaffoldMessenger.of(context)
-                                                          .showSnackBar(snackBar);
-                                                    },
-                                                    child: Text(
-                                                        "Confirm to active robot")),
-                                              )
-                                            ],
-                                          ),
+                                          ],
                                         ),
                                       );
                                     },
@@ -341,7 +202,7 @@ class RobotBuyDetails extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         top: height * 0.005, left: width * 0.005),
-                    child: Text("u",
+                    child: Text("BDT",
                         style: GoogleFonts.lato(
                           color: Colors.black,
                           fontSize: 15,
@@ -363,7 +224,7 @@ class RobotBuyDetails extends StatelessWidget {
         Container(
           height: height * 0.1,
           width: width * 0.003,
-          color: Colors.black,
+          color: Colors.white,
         ),
         SizedBox(
           width: width * 0.04,
@@ -426,11 +287,7 @@ class RobotBuyDetails extends StatelessWidget {
                 )
               ],
             ),
-            Text("Startup\n deposit",
-                style: GoogleFonts.lato(
-                    color: Colors.black38,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w800))
+
           ],
         ),
       ],

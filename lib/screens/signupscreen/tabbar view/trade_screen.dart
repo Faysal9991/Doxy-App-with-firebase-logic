@@ -62,37 +62,6 @@ class _TradeScreenState extends State<TradeScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        drawer: Drawer(child: SliderView()),
-        appBar: AppBar(
-          title: Text(
-            "Market",
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: CircleAvatar(
-                  radius: 14,
-                  backgroundColor: const Color.fromARGB(255, 91, 95, 97),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      "assets/user-solid.svg",
-                      color: Colors.white,
-                    ),
-                  )),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  FontAwesomeIcons.bell,
-                  color: Colors.black,
-                ))
-          ],
-        ),
         backgroundColor: Colors.grey[300],
         body: ListView.builder(
           scrollDirection: Axis.vertical,

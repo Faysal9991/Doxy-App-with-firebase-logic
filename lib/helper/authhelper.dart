@@ -14,12 +14,12 @@ class FireBase{
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  signUp(String email, String password)async{
+  signUp(String email, String password,String username)async{
     EasyLoading.show(status: "Creating Profile");
     final x = await auth.createUserWithEmailAndPassword(email: email, password: password)
 
         .then((value)async{
-      Profile profile = Profile(uid: value.user!.uid, username: email, profileImage: "", email: email);
+      Profile profile = Profile(uid: value.user!.uid, username: username, profileImage: "", email: email);
       final y = await firestore.collection("profile").doc(value.user!.uid).set(profile.toJson());
     })
     .onError((error, stackTrace) {
@@ -95,6 +95,19 @@ class FireBase{
   Stream<Profile> myProfileStream(){
     var y = firestore.collection("profile").doc(auth.currentUser!.uid).snapshots().map((event) => Profile.fromJson(event.data()!));
     return y;
+  }
+
+  Stream<List<WithdrawModel>> withdrawhestory(){
+    return firestore
+        .collection("withdraws")
+        .doc(auth.currentUser!.uid)
+        .collection("")
+        .snapshots()
+        .map((event) =>
+        event.docs.map((e){
+          WithdrawModel withdrawModel = WithdrawModel.fromJson(e.data());
+          return withdrawModel;
+        }).toList());
   }
 
   Stream<List<Bot>> allthebots(){

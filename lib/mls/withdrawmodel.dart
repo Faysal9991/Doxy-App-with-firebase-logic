@@ -1,4 +1,4 @@
-class WithdrawModel{
+class WithdrawModel {
   String? uid;
   double? amount;
   String? number;
@@ -6,35 +6,21 @@ class WithdrawModel{
 
   WithdrawModel({this.uid, this.amount, this.number});
 
-  Map<String, dynamic> toJson()=>{
-    "uid":uid,
-    "amount":amount,
-    "number":number,
-    "granted":granted
-  };
+  Map<String, dynamic> toJson() =>
+      {"uid": uid, "amount": amount, "number": number, "granted": granted};
 
-  WithdrawModel.fromJson(Map<String, dynamic> json){
-    try{
+  WithdrawModel.fromJson(Map<String, dynamic> json) {
+    try {
       uid = json["uid"];
-    }catch(e){
-
-    }
-    try{
+    } catch (e) {}
+    try {
       amount = json["amount"];
-    }catch(c){
-
-    }
-    try{
+    } catch (c) {}
+    try {
       number = json["number"];
-    }catch(e){
-
-    }
-    try{
+    } catch (e) {}
+    try {
       granted = json["granted"];
-    }catch(e){
-
-    }
+    } catch (e) {}
   }
-
-
 }

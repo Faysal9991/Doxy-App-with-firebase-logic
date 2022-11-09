@@ -1,7 +1,7 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.sifat.jadeais"
-4    android:versionCode="1"
+3    package="com.murd.doxi"
+4    android:versionCode="3"
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
@@ -66,9 +66,9 @@
 42-->[androidx.core:core:1.6.0] /Users/macbookair/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 43        android:debuggable="true"
 44        android:icon="@mipmap/ic_launcher"
-45        android:label="jadeais" >
+45        android:label="Doxi" >
 46        <activity
-47            android:name="com.sifat.jadeais.MainActivity"
+47            android:name="com.murd.doxi.MainActivity"
 48            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 49            android:exported="true"
 50            android:hardwareAccelerated="true"
@@ -249,7 +249,7 @@
 158-->[com.google.firebase:firebase-common:20.1.1] /Users/macbookair/.gradle/caches/transforms-3/60cb43b41827ac5833e6ffb9297cb895/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
 159            android:name="com.google.firebase.provider.FirebaseInitProvider"
 159-->[com.google.firebase:firebase-common:20.1.1] /Users/macbookair/.gradle/caches/transforms-3/60cb43b41827ac5833e6ffb9297cb895/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
-160            android:authorities="com.sifat.jadeais.firebaseinitprovider"
+160            android:authorities="com.murd.doxi.firebaseinitprovider"
 160-->[com.google.firebase:firebase-common:20.1.1] /Users/macbookair/.gradle/caches/transforms-3/60cb43b41827ac5833e6ffb9297cb895/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
 161            android:directBootAware="true"
 161-->[com.google.firebase:firebase-common:20.1.1] /Users/macbookair/.gradle/caches/transforms-3/60cb43b41827ac5833e6ffb9297cb895/transformed/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
@@ -261,7 +261,7 @@
 164-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/macbookair/.gradle/caches/transforms-3/d0d463db21586f3baf07c435c257b093/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
 165            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
 165-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/macbookair/.gradle/caches/transforms-3/d0d463db21586f3baf07c435c257b093/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
-166            android:authorities="com.sifat.jadeais.lifecycle-process"
+166            android:authorities="com.murd.doxi.lifecycle-process"
 166-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/macbookair/.gradle/caches/transforms-3/d0d463db21586f3baf07c435c257b093/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
 167            android:exported="false"
 167-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/macbookair/.gradle/caches/transforms-3/d0d463db21586f3baf07c435c257b093/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
@@ -282,7 +282,7 @@
 175-->[com.google.android.gms:play-services-ads-lite:21.0.0] /Users/macbookair/.gradle/caches/transforms-3/3ccfe3c85f973001527a80224c3926d5/transformed/jetified-play-services-ads-lite-21.0.0/AndroidManifest.xml:55:9-59:39
 176            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
 176-->[com.google.android.gms:play-services-ads-lite:21.0.0] /Users/macbookair/.gradle/caches/transforms-3/3ccfe3c85f973001527a80224c3926d5/transformed/jetified-play-services-ads-lite-21.0.0/AndroidManifest.xml:56:13-76
-177            android:authorities="com.sifat.jadeais.mobileadsinitprovider"
+177            android:authorities="com.murd.doxi.mobileadsinitprovider"
 177-->[com.google.android.gms:play-services-ads-lite:21.0.0] /Users/macbookair/.gradle/caches/transforms-3/3ccfe3c85f973001527a80224c3926d5/transformed/jetified-play-services-ads-lite-21.0.0/AndroidManifest.xml:57:13-73
 178            android:exported="false"
 178-->[com.google.android.gms:play-services-ads-lite:21.0.0] /Users/macbookair/.gradle/caches/transforms-3/3ccfe3c85f973001527a80224c3926d5/transformed/jetified-play-services-ads-lite-21.0.0/AndroidManifest.xml:58:13-37
@@ -318,7 +318,7 @@
 195-->[androidx.work:work-runtime:2.7.0] /Users/macbookair/.gradle/caches/transforms-3/59f877328d507eba95abe3e3c7c887f9/transformed/work-runtime-2.7.0/AndroidManifest.xml:31:9-39:20
 196            android:name="androidx.startup.InitializationProvider"
 196-->[androidx.work:work-runtime:2.7.0] /Users/macbookair/.gradle/caches/transforms-3/59f877328d507eba95abe3e3c7c887f9/transformed/work-runtime-2.7.0/AndroidManifest.xml:32:13-67
-197            android:authorities="com.sifat.jadeais.androidx-startup"
+197            android:authorities="com.murd.doxi.androidx-startup"
 197-->[androidx.work:work-runtime:2.7.0] /Users/macbookair/.gradle/caches/transforms-3/59f877328d507eba95abe3e3c7c887f9/transformed/work-runtime-2.7.0/AndroidManifest.xml:33:13-68
 198            android:exported="false" >
 198-->[androidx.work:work-runtime:2.7.0] /Users/macbookair/.gradle/caches/transforms-3/59f877328d507eba95abe3e3c7c887f9/transformed/work-runtime-2.7.0/AndroidManifest.xml:34:13-37
