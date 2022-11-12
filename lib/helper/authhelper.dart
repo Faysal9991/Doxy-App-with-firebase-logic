@@ -176,8 +176,8 @@ class FireBase{
     return total;
 
   }
-  Future<bool>rechargeTobalance(String amount, String transactionId)async{
-    final x = await firestore.collection("recharges").doc().set(RechargeModel(uid: auth.currentUser!.uid, amount: amount, transactionId: transactionId).toJson()).onError((error, stackTrace) => false);
+  Future<bool>rechargeTobalance(String amount, String transactionId,String number)async{
+    final x = await firestore.collection("recharges").doc().set(RechargeModel(uid: auth.currentUser!.uid, amount: amount, transactionId: transactionId,number: number).toJson()).onError((error, stackTrace) => false);
     return true;
   }
   Future<bool> withdrawRequest(WithdrawModel withdrawModel)async{
