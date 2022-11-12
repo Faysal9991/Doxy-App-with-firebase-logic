@@ -1,13 +1,9 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/mls/withdrawmodel.dart';
-
 
 class WithdrawScreen extends StatefulWidget {
   const WithdrawScreen({Key? key}) : super(key: key);
@@ -18,10 +14,11 @@ class WithdrawScreen extends StatefulWidget {
 
 class _WithdrawScreenState extends State<WithdrawScreen> {
   FireBase fireBase = FireBase();
- TextEditingController amount = TextEditingController();
+  TextEditingController amount = TextEditingController();
   TextEditingController phone = TextEditingController();
 
   String? selectedValue;
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -38,447 +35,596 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                     InkWell(
-                    onTap: () {
-                      showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: const Text("Bkash Deposit option"),
-                  
-                    actions:[
-                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                SizedBox(height: height*0.03,),
-                                Text("",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.bold),),
-                               SizedBox(height: height*0.03,),
-                                Row(
-                                  children: [
-                                      Text("মিনিমাম withdraw ৳200",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                      decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                          padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                            controller: amount,
-                                            inputFormatters: [
-        LengthLimitingTextInputFormatter(11),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Entre ammount",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Bkash Deposit option"),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Text(
+                                        "",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.black,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "মিনিমাম withdraw ৳200",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
                                           ),
-                                        ),
-                                      )
-                                  ],
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: amount,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      11),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText:
+                                                            "Entre ammount",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "আপনার নম্বরটি  দিন।",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: phone,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      15),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        hintText:
+                                                            "Entre number",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            await fireBase.withdrawRequest(
+                                                WithdrawModel(
+                                                    uid: fireBase
+                                                        .auth.currentUser!.uid,
+                                                    amount: double.parse(
+                                                        amount.text.trim()),
+                                                    number: phone.text.trim()+" Bkash"));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        "Withdraw request added, wait for confirmation")));
+                                            Navigator.of(context,
+                                                    rootNavigator: true)
+                                                .pop('dialog');
+                                          },
+                                          child: const Text("Submit"))
+                                    ],
+                                  ),
                                 ),
-          
-          
-          SizedBox(height: height*0.03,),
-          
-                                  Row(
-                                  children: [
-                                      Text("আপনার নম্বরটি  দিন।",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                         decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                           padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                            controller: phone,
-                                              inputFormatters: [
-        LengthLimitingTextInputFormatter(15),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              hintText: "Entre number",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                )
-                  ,
-             
-          
-                  ElevatedButton(onPressed: ()async{
-                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                  }, child: const Text("Submit"))
-                  
                               ],
                             ),
-                          ),
-                        
+                          );
+                        },
+                        child: Container(
+                          height: height * 0.2,
+                          width: width * 0.45,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              image: const DecorationImage(
+                                  image: AssetImage("assets/bkash.png"),
+                                  fit: BoxFit.cover)),
+                        ),
+                      ),
 
-                    ],
-                  ),
-                );
-                    },
-                    child: Container(
-                      height: height * 0.2,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/bkash.png"),
-                              fit: BoxFit.cover)),
-                    ),
-                  ),
-               
-               
-               
-               /*.................................nogod.......................*/
+                      /*.................................nogod.......................*/
 
-
-
-
-
-                 InkWell(
-                    onTap: () {
-                      showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: const Text("Nogod Withdraw option"),
-                  
-                    actions:[
-                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                SizedBox(height: height*0.03,),
-                                Text("",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.bold),),
-                               SizedBox(height: height*0.03,),
-                                Row(
-                                  children: [
-                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                      decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                          padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                            inputFormatters: [
-        LengthLimitingTextInputFormatter(11),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Enter amount",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Nogod Withdraw option"),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Text(
+                                        "",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.black,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "মিনিমাম withdraw ৳100",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
                                           ),
-                                        ),
-                                      )
-                                  ],
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: amount,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      11),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText:
+                                                            "Enter amount",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "আপনার নম্বরটি  দিন।",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: phone,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      15),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        hintText:
+                                                            "Enter number",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            await fireBase.withdrawRequest(
+                                                WithdrawModel(
+                                                    uid: fireBase
+                                                        .auth.currentUser!.uid,
+                                                    amount: double.parse(
+                                                        amount.text.trim()),
+                                                    number: phone.text.trim()+" Nogod"));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Withdraw request added, wait for confirmation")));
+                                            Navigator.of(context,
+                                                rootNavigator: true)
+                                                .pop('dialog');
+                                          },
+                                          child: const Text("Submit"))
+                                    ],
+                                  ),
                                 ),
-          
-          
-          SizedBox(height: height*0.03,),
-          
-                                  Row(
-                                  children: [
-                                      Text("আপনার নম্বরটি  দিন।",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                         decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                           padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                              inputFormatters: [
-        LengthLimitingTextInputFormatter(15),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              hintText: "Enter number",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                )
-                  ,
-             
-          
-             
-                  ElevatedButton(onPressed: ()async{
-                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                  }, child: const Text("Submit"))
-                  
                               ],
                             ),
+                          );
+                        },
+                        child: Container(
+                          height: height * 0.2,
+                          width: width * 0.45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        
-
+                          child: SvgPicture.asset("assets/nogod.svg"),
+                        ),
+                      )
                     ],
                   ),
-                );
-                    },
-                    child: Container(
-                      height: height * 0.2,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                         ),
-                         child: SvgPicture.asset("assets/nogod.svg"),
-                    ),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Rocket Withdraw option"),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "মিনিমাম withdraw ৳100",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: amount,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      11),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText:
+                                                            "Enter amount",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "আপনার নম্বরটি  দিন।",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: phone,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      15),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        hintText:
+                                                            "Enter number",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            await fireBase.withdrawRequest(
+                                                WithdrawModel(
+                                                    uid: fireBase
+                                                        .auth.currentUser!.uid,
+                                                    amount: double.parse(
+                                                        amount.text.trim()),
+                                                    number: phone.text.trim()+" Rocket"));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Withdraw request added, wait for confirmation")));
+                                            Navigator.of(context,
+                                                rootNavigator: true)
+                                                .pop('dialog');
+                                          },
+                                          child: const Text("Submit"))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: height * 0.2,
+                          width: width * 0.45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: SvgPicture.asset("assets/roket.svg"),
+                        ),
+                      ),
+
+                      /*.................................Upay.......................*/
+
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("Upay Withdraw option"),
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Text(
+                                        "",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.white,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "মিনিমাম withdraw ৳100",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: amount,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      11),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintText:
+                                                            "Enter amount",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.03,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "আপনার নম্বরটি  দিন।",
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Container(
+                                            height: height * 0.03,
+                                            width: width * 0.4,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: height * 0.01),
+                                              child: TextField(
+                                                controller: phone,
+                                                inputFormatters: [
+                                                  LengthLimitingTextInputFormatter(
+                                                      15),
+                                                ],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        hintText:
+                                                            "Enter number",
+                                                        hintStyle: TextStyle(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      ElevatedButton(
+                                          onPressed: () async {
+                                            await fireBase.withdrawRequest(
+                                                WithdrawModel(
+                                                    uid: fireBase
+                                                        .auth.currentUser!.uid,
+                                                    amount: double.parse(
+                                                        amount.text.trim()),
+                                                    number: phone.text.trim()+" Upay"));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Withdraw request added, wait for confirmation")));
+                                            Navigator.of(context,
+                                                rootNavigator: true)
+                                                .pop('dialog');
+                                          },
+                                          child: const Text("Submit"))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: height * 0.2,
+                          width: width * 0.45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Image.network(
+                              "https://sgp1.digitaloceanspaces.com/cosmosgroup/news/6986535_New%20Project%20(98).jpg"),
+                        ),
+                      )
+                    ],
                   )
-                
-               
-               
-                ],
-               ),
-                
-                
-                SizedBox(height: height*0.05,),
-                Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                     InkWell(
-                    onTap: () {
-                      showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: const Text("Rocket Withdraw option"),
-                  
-                    actions:[
-                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                   
-                               SizedBox(height: height*0.03,),
-                                Row(
-                                  children: [
-                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                      decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                          padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                            inputFormatters: [
-        LengthLimitingTextInputFormatter(11),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Enter amount",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                ),
-          
-          
-          SizedBox(height: height*0.03,),
-          
-                                  Row(
-                                  children: [
-                                      Text("আপনার নম্বরটি  দিন।",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                         decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                           padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                              inputFormatters: [
-        LengthLimitingTextInputFormatter(15),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              hintText: "Enter number",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                )
-                  ,
-           
-          SizedBox(height: height*0.03,),
-          
-          
-                  ElevatedButton(onPressed: ()async{
-                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                  }, child: const Text("Submit"))
-                  
-                              ],
-                            ),
-                          ),
-                        
-
-                    ],
-                  ),
-                );
-                    },
-                    child: Container(
-                      height: height * 0.2,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                       ),
-                        child: SvgPicture.asset("assets/roket.svg"),
-                    ),
-                  ),
-               
-               
-               
-               /*.................................Upay.......................*/
-
-
-
-
-
-                 InkWell(
-                    onTap: () {
-                      showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: const Text("Upay Withdraw option"),
-                  
-                    actions:[
-                         Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                SizedBox(height: height*0.03,),
-                                Text("",style: GoogleFonts.lato(color: Colors.white,fontSize: 9,fontWeight: FontWeight.bold),),
-                               SizedBox(height: height*0.03,),
-                                Row(
-                                  children: [
-                                      Text("মিনিমাম withdraw ৳100",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                      decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                          padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                            inputFormatters: [
-        LengthLimitingTextInputFormatter(11),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Enter amount",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                ),
-          
-          
-          SizedBox(height: height*0.03,),
-          
-                                  Row(
-                                  children: [
-                                      Text("আপনার নম্বরটি  দিন।",style: GoogleFonts.lato(color: Colors.black,fontSize: 9,fontWeight: FontWeight.w500),),
-                                      Container(
-                                        height: height*0.03,
-                                        width: width*0.4,
-                                         decoration: BoxDecoration(  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child:  Padding(
-                                           padding:  EdgeInsets.only(top: height*0.01),
-                                          child: TextField(
-                                              inputFormatters: [
-        LengthLimitingTextInputFormatter(15),
-      ],
-                                            textAlign: TextAlign.center,
-                                             style: const TextStyle(color: Colors.black),
-                                            decoration: const InputDecoration(
-                                              hintText: "Enter number",
-                                              hintStyle: TextStyle(color: Colors.black)
-                                            ),
-              
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                )
-                  ,
-            
-                  ElevatedButton(onPressed: ()async{
-                    await fireBase.withdrawRequest(WithdrawModel(uid: fireBase.auth.currentUser!.uid, amount: double.parse(amount.text.trim()), number: phone.text.trim()));
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Withdraw request added, wait for confirmation")));
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-
-                  }, child: const Text("Submit"))
-                  
-                              ],
-                            ),
-                          ),
-                        
-
-                    ],
-                  ),
-                );
-                    },
-                    child: Container(
-                      height: height * 0.2,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                         ),
-                         child: Image.network("https://sgp1.digitaloceanspaces.com/cosmosgroup/news/6986535_New%20Project%20(98).jpg"),
-                    ),
-                  )
-                
-               
-               
-                ],
-               )
-               
                 ],
               ),
             ),
