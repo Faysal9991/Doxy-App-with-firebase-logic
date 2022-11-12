@@ -6,7 +6,7 @@ import 'package:jadeais/mls/withdrawmodel.dart';
 import 'package:jadeais/utils/color_plate.dart';
 
 class Recargehistory extends StatefulWidget {
-  const Recargehistory({Key? key}) : super(key: key);
+  const Recargehistory({Key ? key}) : super(key: key);
 
   @override
   State<Recargehistory> createState() => _RecargehistoryState();
