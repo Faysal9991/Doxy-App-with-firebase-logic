@@ -6,7 +6,7 @@ import 'package:jadeais/screens/signupscreen/signuppage.dart';
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
-  @overridq
+  @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
@@ -67,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),*/
                  Container(
                   height: height*0.05,
-
                   decoration: BoxDecoration(
                       color: const Color(0xffF6F6F6),
                       borderRadius: BorderRadius.circular(5)
