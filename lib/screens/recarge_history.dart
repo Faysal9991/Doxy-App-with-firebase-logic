@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jadeais/app/controllers/recharge_con.dart';
 import 'package:jadeais/helper/authhelper.dart';
 import 'package:jadeais/mls/withdrawmodel.dart';
 import 'package:jadeais/utils/color_plate.dart';
 
-class Recargehistory extends StatefulWidget {
-  const Recargehistory({Key ? key}) : super(key: key);
+class Recargehistory extends StatelessWidget {
+  final rechargeCon = Get.put(RechargeController());
 
-  @override
-  State<Recargehistory> createState() => _RecargehistoryState();
-}
-
-class _RecargehistoryState extends State<Recargehistory> {
   FireBase fireBase = FireBase();
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -32,28 +30,17 @@ class _RecargehistoryState extends State<Recargehistory> {
             icon: Icon(FontAwesomeIcons.bell))
       ],
     ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: StreamBuilder<WithdrawModel>(
-      //       stream: fireBase.withdrawHistory(),
-      //
-      //     builder: (context, snap) {
-      //       return ListView.builder(
-      //         itemCount: snap.data.,
-      //           itemBuilder: (context,index){
-      //             return Container(
-      //               height: height*0.07,
-      //               width: width,
-      //               decoration: BoxDecoration(
-      //                   color: Platte.background,
-      //                 borderRadius: BorderRadius.circular(8)
-      //               ),
-      //             );
-      //           }
-      //       );
-      //     }
-      //   ),
-      // ),
+      body: Obx(()=> rechargeCon.isLoading.value?Center(
+        child: CircularProgressIndicator(
+      )):ListView.builder(
+        itemCount: rechargeCon.rechargeinstance.length,
+        itemBuilder: (_,index){
+          return ListTile(
+            title: Text('test'),
+          );
+        },
+      ))
+
     );
   }
 }
