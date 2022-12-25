@@ -10,7 +10,7 @@ class RechargeModel {
 
   RechargeModel.fromMap({required DocumentSnapshot documentSnapshot}){
     id = documentSnapshot.id;
-    ammount = documentSnapshot['ammount'];
+    ammount = documentSnapshot['amount'];
     transactionid = documentSnapshot['transactionId'];
     uid = documentSnapshot['uid'];
 

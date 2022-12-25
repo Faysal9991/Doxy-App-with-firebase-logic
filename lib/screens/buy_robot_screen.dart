@@ -115,6 +115,9 @@ class _BuyRobotState extends State<BuyRobot> {
                                 height: height * 0.043,
                                 width: width * 0.9,
                                 child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Platte.primary
+                                  ),
                                     onPressed: () {
                                       showDialog(
                                         context: context,
@@ -279,7 +282,7 @@ class RobotBuyDetails extends StatelessWidget {
                 Padding(
                   padding:
                       EdgeInsets.only(top: height * 0.005, left: width * 0.005),
-                  child: Text("u",
+                  child: Text("BDT",
                       style: GoogleFonts.lato(
                         color: Colors.black,
                         fontSize: 15,
